@@ -5,6 +5,8 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { AssociatePageComponent } from './associate-page/associate-page.component';
 import { TrainerPageComponent } from './trainer-page/trainer-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
+import { SharedMaterialModule } from '../shared/shared-material.module';
+import { AppRoutingModule } from '../app-routing.module';
 
 const components = [
   HomePageComponent,
@@ -16,7 +18,7 @@ const components = [
 
 @NgModule({
   declarations: components,
-  imports: [CommonModule],
+  imports: [CommonModule, SharedMaterialModule, AppRoutingModule],
   exports: components,
 })
 export class ViewModule {}
