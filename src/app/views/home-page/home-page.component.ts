@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppLoaderService } from 'src/app/shared/shared-component/app-loader/app-loader.service';
-
+import {MatSnackBar} from '@angular/material/snack-bar';
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -8,7 +8,8 @@ import { AppLoaderService } from 'src/app/shared/shared-component/app-loader/app
 })
 export class HomePageComponent implements OnInit {
 
-  constructor(private loader: AppLoaderService) { }
+  constructor(private loader: AppLoaderService,
+    private snackbar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.loader.open();
@@ -18,7 +19,9 @@ export class HomePageComponent implements OnInit {
   }
 
   openSnackbar(): void {
-    
+    this.snackbar.open("message","action", {
+      duration: 5000
+    });
   }
 
 }
