@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { Price } from './shared/models/price';
 import { AssociatePageComponent } from './views/associate-page/associate-page.component';
 import { HomePageComponent } from './views/home-page/home-page.component';
+import { LeaderboardPageComponent } from './views/leaderboard-page/leaderboard-page.component';
 import { LoginPageComponent } from './views/login-page/login-page.component';
+import { NotFoundPageComponent } from './views/not-found-page/not-found-page.component';
+import { PricePageComponent } from './views/price-page/price-page.component';
 import { RegisterPageComponent } from './views/register-page/register-page.component';
 import { TrainerPageComponent } from './views/trainer-page/trainer-page.component';
 
@@ -12,7 +16,10 @@ const routes: Routes = [
   { path: "login", component: LoginPageComponent },
   { path: "register", component: RegisterPageComponent },
   { path: "trainer", component: TrainerPageComponent },
-  { path: "associate", component: AssociatePageComponent }
+  { path: "associate", component: AssociatePageComponent },
+  { path: "leaderboard", component: LeaderboardPageComponent },
+  { path: "price", component: PricePageComponent },
+  { path: "**", component: NotFoundPageComponent}
 ];
 
 @NgModule({
