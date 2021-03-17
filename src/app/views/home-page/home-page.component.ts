@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppLoaderService } from 'src/app/shared/shared-component/app-loader/app-loader.service';
 
 @Component({
   selector: 'app-home-page',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private loader: AppLoaderService) { }
 
   ngOnInit(): void {
+    this.loader.open();
+    setTimeout(() => {
+      this.loader.close();
+    }, 1000);
+  }
+
+  openSnackbar(): void {
+    
   }
 
 }
