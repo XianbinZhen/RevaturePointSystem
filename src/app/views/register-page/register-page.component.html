@@ -1,1 +1,28 @@
-<p>register-page works!</p>
+<div class="background-view d-flex justify-content-center align-items-center">
+    <div class="d-flex flex-wrap gap-2 justify-content-around align-items-center bg-white p-3 rounded border w-75" >
+        <div>
+            <img width="200px" src="../../../assets/img/background.jpg" alt="logo" class="rounded"/>
+        </div>
+        <div>
+            <form [formGroup]="signupForm"  (ngSubmit)="onSubmit()" class="d-flex flex-column gap-2">
+                <mat-form-field >
+                    <mat-label>username</mat-label>
+                    <input matInput formControlName="username"  type="text" name="username" placeholder="username" />
+                </mat-form-field>
+                <mat-form-field >
+                    <mat-label>Password</mat-label>
+                    <input matInput formControlName="password" type="password" name="password"  />
+                </mat-form-field>
+                <mat-form-field >
+                    <mat-label>Confirm Password</mat-label>
+                    <input matInput formControlName="confirmPassword" type="password" name="confirmPassword"  />
+                </mat-form-field>
+                <div class="d-flex gap-2 align-items-center">
+                    <button mat-flat-button color="primary" class="me-3">Sign Up</button>
+                    <span >or</span>
+                    <a mat-button color="primary" routerLink="/login">Sign In</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

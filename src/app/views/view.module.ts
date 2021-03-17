@@ -10,6 +10,7 @@ import { AppRoutingModule } from '../app-routing.module';
 import { LeaderboardPageComponent } from './leaderboard-page/leaderboard-page.component';
 import { PricePageComponent } from './price-page/price-page.component';
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const components = [
   HomePageComponent,
@@ -24,7 +25,8 @@ const components = [
 
 @NgModule({
   declarations: components,
-  imports: [CommonModule, SharedMaterialModule, AppRoutingModule],
+  imports: [CommonModule, SharedMaterialModule, AppRoutingModule, FormsModule,
+    ReactiveFormsModule],
   exports: components,
 })
 export class ViewModule {}
