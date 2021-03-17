@@ -4,9 +4,11 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { SharedMaterialModule } from '../shared-material.module';
+import { AppLoaderComponent } from './app-loader/app-loader.component';
+import { AppLoaderService } from './app-loader/app-loader.service';
 
 
-const components = [FooterComponent, HeaderComponent];
+const components = [FooterComponent, HeaderComponent, AppLoaderComponent];
 
 @NgModule({
   declarations: components,
@@ -15,6 +17,7 @@ const components = [FooterComponent, HeaderComponent];
     AppRoutingModule,
     SharedMaterialModule
   ],
-  exports: components
+  exports: components,
+  providers: [AppLoaderService]
 })
 export class SharedComponentModule { }
