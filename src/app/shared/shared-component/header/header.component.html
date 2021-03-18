@@ -22,12 +22,10 @@
                 <li class="nav-item">
                     <a [routerLink]="[ '/price' ]" routerLinkActive="active" class="nav-link">price</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="!isLogin">
                     <a [routerLink]="[ '/login' ]" routerLinkActive="active" class="nav-link">login</a>
                 </li>
-                <li class="nav-item">
-                    <a [routerLink]="[ '/register' ]" routerLinkActive="active" class="nav-link">sign up</a>
-                </li>
+                <li *ngIf="isLogin"><button mat-raised-button color="accent" (click)="logout()">logout</button></li>
             </ul>
         </div>
     </div>

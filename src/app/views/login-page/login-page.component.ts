@@ -40,6 +40,8 @@ export class LoginPageComponent implements OnInit {
       this.userAuthService.login(user).subscribe( res => {
         user = JSON.parse(atob(res.split('.')[1]));
         console.log(user);
+        const isAuthenticated = user.role === "admin";
+        this.userAuthService.setUserAndToken(res, user, isAuthenticated);
         if(user.role == "admin")
           this.router.navigate(["trainer"]);
         else if (user.role == "associate") {
