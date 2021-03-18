@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { Employee } from '../models/employee';
 import { User } from '../models/user';
 
 @Injectable({
@@ -20,7 +21,7 @@ export class UserAuthService {
   }
 
 
-  register(user: User): Observable<String> {
+  register(newEmployee: Employee): Observable<String> {
     return of(this.jwtAssoc);
   }
 
