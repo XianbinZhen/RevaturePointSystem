@@ -1,0 +1,13 @@
+.background-view {
+    height: 80vh;
+    background: url("../../../assets/img/background.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    object-fit: contain;
+    background-attachment: fixed;
+}
+.card-panel{
+    height: 20vh;
+    width: 260px;
+    margin:10px;
+}
