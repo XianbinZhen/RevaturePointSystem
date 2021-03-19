@@ -15,19 +15,11 @@ export class UserAuthService {
   APP_USER = "REV_POINT_SYS_USER";
   user?: User;
 
-
-  // SECRET = SECRET
-  jwt: string = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWRhbSBSYW5pZXJpIiwicm9sZSI6ImFkbWluIn0.9gKmSh1qdo6PR2Jjq5-pRusJYWbHYS87QrEs6kKfegk";
-  jwtAssoc: string = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQXNzb2MgMSIsInJvbGUiOiJhc3NvY2lhdGUifQ.tXjlNiSLRHYaGnWTPPlt0micGZaWFdaBe7BUcEHO0A8";
-  
   constructor(private localStorage: LocalStorageService,
     private router: Router, private http: HttpClient) { }
 
   login(user: User): Observable<User>{
     return this.http.post<User>("http://localhost:8080/login", user);
-    // return this.http.get("http://localhost:8080/prize");
-    // return this.http.get("http://localhost:7000/expense");
-    // return this.http.get("http://35.202.169.35:7000/expense");
   }
 
 

@@ -63,6 +63,7 @@ export class RegisterPageComponent implements OnInit {
           let user: User = res;
           this.loader.close();
           this.userAuthService.setUserAndToken(user);
+          this.userAuthService.loadUser();
           if(user.role == "trainer")
             this.router.navigate(["trainer"]);
           else if (user.role == "associate") {
@@ -70,19 +71,19 @@ export class RegisterPageComponent implements OnInit {
           };
         }, error => {
           console.log(error);
-          this.snackbar.open(error.error, "close", {
+          this.snackbar.open(error.error, "error", {
             duration: 3000
           });
           this.loader.close();
         });
       }, error => {
-        this.snackbar.open(error.error, "close", {
+        this.snackbar.open(error.error, "error", {
           duration: 3000
         });
         this.loader.close();
       });
     } else {
-      this.snackbar.open("input field is invalid", "close", {
+      this.snackbar.open("Input field is invalid", "close", {
         duration: 3000
       });
     }

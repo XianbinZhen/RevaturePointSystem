@@ -47,6 +47,7 @@ export class LoginPageComponent implements OnInit {
         user = res;
         // console.log("user", user)
         this.userAuthService.setUserAndToken(user);
+        this.userAuthService.loadUser();
         if(user.role == "trainer")
           this.router.navigate(["trainer"]);
         else if (user.role == "associate") {
