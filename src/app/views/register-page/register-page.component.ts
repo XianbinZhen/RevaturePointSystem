@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Employee } from 'src/app/shared/models/employee';
+import { User } from 'src/app/shared/models/user';
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 import { AppLoaderService } from 'src/app/shared/shared-component/app-loader/app-loader.service';
 
@@ -45,24 +46,40 @@ export class RegisterPageComponent implements OnInit {
       const username: string = this.signupForm.value.username;
       const password: string = this.signupForm.value.password;
       const lname: string = this.signupForm.value.lastName;
-      const fname: string = this.signupForm.value.firstname;
+      const fname: string = this.signupForm.value.firstName;
       const employeeId: number = 0;
       const currentRevaPoints: number = 0;
       const allTimeRevaPoints: number = 0;
       const batchId: number = 0;
       const role: string = "associate";
       let newEmployee: Employee = {username,password,lname,fname, employeeId, currentRevaPoints, allTimeRevaPoints, batchId, role};
-      // let user: User = {name: username, password};
       this.loader.open();
+
       this.userAuthService.register(newEmployee).subscribe( res => {
-        newEmployee = JSON.parse(atob(res.split('.')[1]));
-        console.log("newEmployee from res: ", newEmployee);
-        this.loader.close()
-        if(newEmployee.role == "admin")
-          this.router.navigate(["trainer"]);
-        else if (newEmployee.role == "associate") {
-          this.router.navigate(["associate"]);
-        };
+        this.snackbar.open("User created", "close", {
+          duration: 3000
+        });
+        this.userAuthService.login({username, password}).subscribe( res => {
+          let user: User = res;
+          this.loader.close();
+          this.userAuthService.setUserAndToken(user);
+          if(user.role == "trainer")
+            this.router.navigate(["trainer"]);
+          else if (user.role == "associate") {
+            this.router.navigate(["associate"]);
+          };
+        }, error => {
+          console.log(error);
+          this.snackbar.open(error.error, "close", {
+            duration: 3000
+          });
+          this.loader.close();
+        });
+      }, error => {
+        this.snackbar.open(error.error, "close", {
+          duration: 3000
+        });
+        this.loader.close();
       });
     } else {
       this.snackbar.open("input field is invalid", "close", {

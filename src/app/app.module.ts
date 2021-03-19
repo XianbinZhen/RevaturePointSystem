@@ -8,6 +8,7 @@ import { SharedModule } from './shared/shared.module';
 import { ViewModule } from './views/view.module';
 import { SharedMaterialModule } from './shared/shared-material.module';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent
@@ -19,7 +20,8 @@ import { FormsModule } from '@angular/forms';
     SharedModule,
     ViewModule,
     SharedMaterialModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

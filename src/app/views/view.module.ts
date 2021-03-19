@@ -11,6 +11,7 @@ import { LeaderboardPageComponent } from './leaderboard-page/leaderboard-page.co
 import { PricePageComponent } from './price-page/price-page.component';
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 const components = [
   HomePageComponent,
@@ -26,7 +27,7 @@ const components = [
 @NgModule({
   declarations: components,
   imports: [CommonModule, SharedMaterialModule, AppRoutingModule, FormsModule,
-    ReactiveFormsModule],
+    ReactiveFormsModule, HttpClientModule],
   exports: components,
 })
 export class ViewModule {}

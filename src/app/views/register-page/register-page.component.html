@@ -5,12 +5,12 @@
         </div>
         <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="d-flex flex-column gap-2">
             <mat-form-field>
-                <mat-label>Fist name</mat-label>
+                <mat-label>First name</mat-label>
                 <input matInput formControlName="firstName" type="text" name="firstName" />
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Last name</mat-label>
-                <input matInput formControlName="lastName" type="test" name="lastName" />
+                <input matInput formControlName="lastName" type="text" name="lastName" />
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Username</mat-label>

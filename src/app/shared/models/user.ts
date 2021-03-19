@@ -1,5 +1,9 @@
 export class User {
-    name!: string;
+    employeeId?: number;
     role?: string;
-    password!: string;
+    firstName?: string;
+    lastName?: string;
+    username?: string;
+    password?: string;
+    jwtToken?: string = "";
 }

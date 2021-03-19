@@ -18,10 +18,12 @@ export class LoginPageComponent implements OnInit {
     private userAuthService: UserAuthService) {}
 
   ngOnInit() {
-
+    if(this.userAuthService.isLoggedIn()) {
+      console.log("login..");
+      
+    }
     const username = new FormControl('', Validators.required);
     const password = new FormControl('', Validators.required);
-
     this.loginForm = this.fb.group(
       {
         username,
@@ -34,20 +36,25 @@ export class LoginPageComponent implements OnInit {
     if (!this.loginForm?.invalid) {
       console.log(this.loginForm?.value);
       //navigate to route base on role
-      const name = this.loginForm.value.username;
+      const username = this.loginForm.value.username;
       const password = this.loginForm.value.password;
-      let user: User = {name, password};
+      let user: User = {username, password};
       this.userAuthService.login(user).subscribe( res => {
-        user = JSON.parse(atob(res.split('.')[1]));
-        console.log(user);
-        const isAuthenticated = user.role === "admin";
-        this.userAuthService.setUserAndToken(res, user, isAuthenticated);
-        if(user.role == "admin")
+        user = res;
+        console.log("user", user)
+        this.userAuthService.setUserAndToken(user);
+        if(user.role == "trainer")
           this.router.navigate(["trainer"]);
         else if (user.role == "associate") {
           this.router.navigate(["associate"]);
         };
-      });
+      }, error  => {
+        console.log("Error", error);
+        this.snackbar.open(error.error.error, "close", {
+          duration: 3000
+        });
+        }
+      );
     } else {
       this.snackbar.open("input field is invalid", "close", {
         duration: 3000

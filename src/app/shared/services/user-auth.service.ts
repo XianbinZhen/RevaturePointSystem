@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
@@ -11,9 +12,8 @@ import { LocalStorageService } from './local-storage.service';
 export class UserAuthService {
 
   JWT_TOKEN = "JWT_TOKEN_REVATURE_POINT_SYSTEM";
-  APP_USER = "EGRET_USER";
+  APP_USER = "REV_POINT_SYS_USER";
   user?: User;
-  token: string = "";
   isAuthenticated: boolean = false;
 
 
@@ -22,18 +22,18 @@ export class UserAuthService {
   jwtAssoc: string = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQXNzb2MgMSIsInJvbGUiOiJhc3NvY2lhdGUifQ.tXjlNiSLRHYaGnWTPPlt0micGZaWFdaBe7BUcEHO0A8";
   
   constructor(private localStorage: LocalStorageService,
-    private router: Router) { }
+    private router: Router, private http: HttpClient) { }
 
-  login(user: User): Observable<string> {
-    if(user.name == "admin")
-      return of(this.jwt);
-    else
-      return of(this.jwtAssoc)
+  login(user: User): Observable<User>{
+    return this.http.post<User>("http://localhost:8080/login", user);
+    // return this.http.get("http://localhost:8080/prize");
+    // return this.http.get("http://localhost:7000/expense");
+    // return this.http.get("http://35.202.169.35:7000/expense");
   }
 
 
-  register(newEmployee: Employee): Observable<String> {
-    return of(this.jwtAssoc);
+  register(newEmployee: Employee): Observable<Employee> {
+    return this.http.post<Employee>("http://localhost:8080/employee", newEmployee);
   }
 
 
@@ -52,11 +52,10 @@ export class UserAuthService {
     this.router.navigateByUrl("/login");
   }
 
-  setUserAndToken(token: string, user: User, isAuthenticated: boolean) {
-    this.token = token;
+  setUserAndToken(user: User) {
     this.user = user;
-    this.isAuthenticated = isAuthenticated;
-    this.localStorage.setItem(this.JWT_TOKEN, token);
+    this.isAuthenticated = user.role == "trainer";
+    this.localStorage.setItem(this.JWT_TOKEN, user.jwtToken!);
     this.localStorage.setItem(this.APP_USER, JSON.stringify(user));
   }
 
