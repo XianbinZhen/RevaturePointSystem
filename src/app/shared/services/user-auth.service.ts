@@ -14,7 +14,6 @@ export class UserAuthService {
   JWT_TOKEN = "JWT_TOKEN_REVATURE_POINT_SYSTEM";
   APP_USER = "REV_POINT_SYS_USER";
   user?: User;
-  isAuthenticated: boolean = false;
 
 
   // SECRET = SECRET
@@ -38,12 +37,11 @@ export class UserAuthService {
 
 
   getJwtToken(): string | null {
+    console.log("jwt-token", this.localStorage.getItem(this.JWT_TOKEN));
     return this.localStorage.getItem(this.JWT_TOKEN);
   }
 
   isLoggedIn(): boolean {
-    console.log("jwt token in localstorage ", this.getJwtToken());
-    
     return !!this.getJwtToken();
   }
 
@@ -52,11 +50,19 @@ export class UserAuthService {
     this.router.navigateByUrl("/login");
   }
 
+  loadUser() {
+    this.user = JSON.parse(this.localStorage.getItem(this.APP_USER)!);
+  }
+
   setUserAndToken(user: User) {
     this.user = user;
-    this.isAuthenticated = user.role == "trainer";
     this.localStorage.setItem(this.JWT_TOKEN, user.jwtToken!);
     this.localStorage.setItem(this.APP_USER, JSON.stringify(user));
+  }
+
+  isAuthenticated() {
+    let user: User =JSON.parse(this.localStorage.getItem(this.APP_USER)!);
+    return user.role == "trainer";
   }
 
 }

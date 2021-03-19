@@ -1,8 +1,8 @@
 export class User {
     employeeId?: number;
     role?: string;
-    firstName?: string;
-    lastName?: string;
+    fname?: string;
+    lname?: string;
     username?: string;
     password?: string;
     jwtToken?: string = "";

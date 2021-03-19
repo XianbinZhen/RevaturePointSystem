@@ -19,8 +19,12 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit() {
     if(this.userAuthService.isLoggedIn()) {
-      console.log("login..");
-      
+      this.userAuthService.loadUser();
+      console.log(this.userAuthService.user);
+      this.router.navigate([this.userAuthService.user?.role]);
+      this.snackbar.open(`Welcome back ${this.userAuthService.user?.role} ${this.userAuthService.user?.fname}`, "OK", {
+        duration: 3000
+      });
     }
     const username = new FormControl('', Validators.required);
     const password = new FormControl('', Validators.required);
@@ -41,7 +45,7 @@ export class LoginPageComponent implements OnInit {
       let user: User = {username, password};
       this.userAuthService.login(user).subscribe( res => {
         user = res;
-        console.log("user", user)
+        // console.log("user", user)
         this.userAuthService.setUserAndToken(user);
         if(user.role == "trainer")
           this.router.navigate(["trainer"]);
@@ -50,13 +54,13 @@ export class LoginPageComponent implements OnInit {
         };
       }, error  => {
         console.log("Error", error);
-        this.snackbar.open(error.error.error, "close", {
+        this.snackbar.open(error, "error", {
           duration: 3000
         });
         }
       );
     } else {
-      this.snackbar.open("input field is invalid", "close", {
+      this.snackbar.open("input field is invalid", "error", {
         duration: 3000
       });
     }

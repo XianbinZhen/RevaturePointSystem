@@ -11,7 +11,7 @@ export class AdminAuthGuardService {
   constructor(private router: Router, private userAuth: UserAuthService, private snack: MatSnackBar) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (this.userAuth.isAuthenticated) {
+    if (this.userAuth.isAuthenticated()) {
       return true;
     } else {
       this.router.navigate(["/login"], {
