@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 
 @Component({
   selector: 'app-associate-page',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AssociatePageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userAuthService: UserAuthService) { }
 
   ngOnInit(): void {
   }
