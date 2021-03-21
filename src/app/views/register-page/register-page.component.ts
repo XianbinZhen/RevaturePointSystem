@@ -71,13 +71,14 @@ export class RegisterPageComponent implements OnInit {
           };
         }, error => {
           console.log(error);
-          this.snackbar.open(error.error, "error", {
+          this.snackbar.open(error.error.error, "error", {
             duration: 3000
           });
           this.loader.close();
         });
       }, error => {
-        this.snackbar.open(error.error, "error", {
+        console.log("error", error);
+        this.snackbar.open(error.error.error, "error", {
           duration: 3000
         });
         this.loader.close();

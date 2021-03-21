@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { Price } from './shared/models/price';
 import { AdminAuthGuardService } from './shared/services/admin-auth-guard.service';
 import { AuthGuardService } from './shared/services/auth-guard.service';
+import { AddPrizePageComponent } from './views/add-prize-page/add-prize-page.component';
 import { AssociatePageComponent } from './views/associate-page/associate-page.component';
 import { HomePageComponent } from './views/home-page/home-page.component';
 import { LeaderboardPageComponent } from './views/leaderboard-page/leaderboard-page.component';
@@ -18,7 +19,11 @@ const routes: Routes = [
   { path: "login", component: LoginPageComponent },
   { path: "register", component: RegisterPageComponent },
   { path: "trainer", component: TrainerPageComponent, 
-  // canActivate: [AuthGuardService, AdminAuthGuardService] 
+  // canActivate: [AuthGuardService, AdminAuthGuardService],
+    children: [ 
+      { path: "addPrize", component: AddPrizePageComponent },
+      { path: "leaderboard", component: LeaderboardPageComponent },
+    ],
     },
   { path: "associate", component: AssociatePageComponent, 
     // canActivate: [AuthGuardService] 

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 @Component({
   selector: 'app-trainer-page',
   templateUrl: './trainer-page.component.html',
@@ -7,9 +6,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TrainerPageComponent implements OnInit {
 
+
   constructor() { }
 
   ngOnInit(): void {
+  
+    
   }
 
 }

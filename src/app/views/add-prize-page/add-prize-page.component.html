@@ -1,0 +1,27 @@
+<hr>
+<a mat-raised-button color='accent' [routerLink]="[ '/trainer']">Back</a>
+<form [formGroup]="addPrizeForm" (ngSubmit)="addPrize()" class="d-flex flex-column gap-2">
+    <div class="d-flex flex-sm-nowrap flex-wrap gap-2">
+        <mat-form-field class="w-100">
+            <mat-label>Prize name</mat-label>
+            <input matInput formControlName="prizeName" type="text" name="prizeName" />
+        </mat-form-field>
+        <mat-form-field class="w-100">
+            <mat-label>Prize cost</mat-label>
+            <input matInput formControlName="prizeCost" type="number" name="prizeCost" />
+        </mat-form-field>
+    </div>
+    <div>
+        <input type="file" accept="image/png, image/jpeg" class="form-control align" (change)="uploadFile($event)">
+        <mat-progress-bar [value]="progressBarValue" max="100" class="w-100"></mat-progress-bar>
+    </div>
+    <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description" type="text" rows=5 name="description" placeholder="description" ></textarea>
+    </mat-form-field>
+    <div class="d-flex gap-2 align-items-center">
+        <button mat-flat-button color="primary" class="me-3">Add</button>
+        <button mat-button color="accent" type="button" (click)="clearFields()">Clear</button>
+    </div>
+</form>
+
