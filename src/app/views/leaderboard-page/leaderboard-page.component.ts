@@ -41,7 +41,6 @@ export class LeaderboardPageComponent implements OnInit {
       },
       (error) => {
         console.log("error", error);
-        
         this.snackbar.open(error?.error?.error, 'error', {
           duration: 3000,
         });
@@ -49,4 +48,10 @@ export class LeaderboardPageComponent implements OnInit {
       }
     );
   }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  
 }

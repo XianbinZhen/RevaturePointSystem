@@ -1,5 +1,11 @@
 <div>
-    <table mat-table [dataSource]="dataSource" matSort matSortActive="allTimeRevaPoints" matSortDirection="desc" class="table">
+    <mat-form-field class="w-100">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+
+    <table mat-table [dataSource]="dataSource" matSort matSortActive="allTimeRevaPoints" matSortDirection="desc"
+        class="table">
 
         <ng-container matColumnDef="allTimeRevaPoints">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> allTimeRevaPoints </th>
@@ -10,7 +16,7 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header> currentRevaPoints </th>
             <td mat-cell *matCellDef="let element"> {{element.currentRevaPoints}} </td>
         </ng-container>
-        
+
         <ng-container matColumnDef="fname">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> First name </th>
             <td mat-cell *matCellDef="let element"> {{element.fname}} </td>
