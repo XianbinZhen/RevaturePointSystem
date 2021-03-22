@@ -5,7 +5,6 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Employee } from 'src/app/shared/models/employee';
 import { EmployeeService } from 'src/app/shared/services/employee.service';
-import { AppLoaderComponent } from 'src/app/shared/shared-component/app-loader/app-loader.component';
 import { AppLoaderService } from 'src/app/shared/shared-component/app-loader/app-loader.service';
 
 @Component({
@@ -41,7 +40,6 @@ export class LeaderboardPageComponent implements OnInit {
       },
       (error) => {
         console.log("error", error);
-        
         this.snackbar.open(error?.error?.error, 'error', {
           duration: 3000,
         });
@@ -49,4 +47,10 @@ export class LeaderboardPageComponent implements OnInit {
       }
     );
   }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  
 }
