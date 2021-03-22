@@ -23,7 +23,7 @@ export class AddPrizePageComponent implements OnInit {
   addPrizeForm!: FormGroup;
   progressBarValue: number = 0;
   file?: File;
-  downloadURL?: string;
+  downloadURL: string = '';
 
   constructor(
     private trainerService: TrainerService,
@@ -100,9 +100,9 @@ export class AddPrizePageComponent implements OnInit {
       name: this.addPrizeForm.value.prizeName,
       cost: this.addPrizeForm.value.prizeCost,
       description:
-        this.addPrizeForm.value.description + 'IMG:' + this.downloadURL,
+        this.addPrizeForm.value.description,
       employeeId: 1,
-      // imgUrl: this.downloadURL
+      imgURL: this.downloadURL
     };
     this.trainerService.addPrize(prize).subscribe(
       (res) => {
