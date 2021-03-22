@@ -1,3 +1,4 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Price } from '../models/price';
@@ -7,18 +8,20 @@ import { Price } from '../models/price';
 })
 export class PriceService {
 
-  prices: Price[] = [
-    // put mock data here
-    { priceId: 1, name: 'Ipad', cost: 100, description: "New Ipad", employeeId: 0 },
-    { priceId: 2, name: 'Ipad 2', cost: 200, description: "New Ipad 2", employeeId: 1 },
-    { priceId: 3, name: 'Ipad 3', cost: 300, description: "New Ipad 3", employeeId: 0 },
-    { priceId: 4, name: 'Ipad 4', cost: 400, description: "New Ipad 4", employeeId: 0 },
-    { priceId: 5, name: 'Ipad 5', cost: 600, description: "New Ipad 5", employeeId: 0 }
-  ]
+  url = "http://localhost:8080/prize";
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
-  getAllPrice(): Observable<Price[]> {
-    return of(this.prices.slice());
+  getAllPrice() {
+    const headerDict = {
+      'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOiJBZGFtIiwibGFzdE5hbWUiOiJSYW5pZXJpIiwicm9sZSI6ImFzc29jaWF0ZSIsImVtcGxveWVlSWQiOjF9.2LI3VTRZugKOb27f-oAjEK7K1rX7DDTU36zTx6ev4vE',
+    }
+
+    const requestOptions = {
+      headers: new HttpHeaders(headerDict),
+    };
+
+    const result = this.http.get(this.url, requestOptions);
+    return result;
   }
 }

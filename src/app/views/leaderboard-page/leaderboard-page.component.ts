@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Employee } from 'src/app/shared/models/employee';
-import { EmployeeService } from 'src/app/shared/services/employee.service';
+import { AssociateService } from 'src/app/shared/services/associate.service';
 import { AppLoaderComponent } from 'src/app/shared/shared-component/app-loader/app-loader.component';
 import { AppLoaderService } from 'src/app/shared/shared-component/app-loader/app-loader.service';
 
@@ -25,15 +25,15 @@ export class LeaderboardPageComponent implements OnInit {
   dataSource!: MatTableDataSource<Employee>;
 
   constructor(
-    private employeeService: EmployeeService,
+    private associateService: AssociateService,
     private loader: AppLoaderService,
     private snackbar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
     this.loader.open();
-    this.employeeService.getAllEmployees().subscribe(
-      (res) => {
+    this.associateService.getAllAssociates().subscribe(
+      (res:any) => {
         this.dataSource = new MatTableDataSource<Employee>(res);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;

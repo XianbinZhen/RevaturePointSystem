@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PriceService} from 'src/app/shared/services/price.service'
 
 @Component({
   selector: 'app-price-page',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PricePageComponent implements OnInit {
 
-  constructor() { }
+  data:any
+  constructor(private priceService:PriceService) { }
 
   ngOnInit(): void {
+    this.getAllPrizes()
+  }
+
+  async getAllPrizes(){
+    this.priceService.getAllPrice().subscribe((result)=>{
+      this.data = result;
+      console.log(this.data)
+    })
   }
 
 }

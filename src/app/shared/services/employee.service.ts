@@ -1,27 +1,29 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Employee } from '../models/employee';
-import { UserAuthService } from './user-auth.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
 
-  URL = "http://localhost:8080";
+  url = "http://localhost:8080/employee"
 
-  options = {
-    headers: {
-      Authorization: this.userAuthService.getJwtToken()!
-    } 
-  }
+  constructor(private http:HttpClient) { }
 
-  constructor(private userAuthService: UserAuthService,
-    private http: HttpClient) { }
+  getAllEmployees() {
 
-  getAllEmployees(): Observable<Employee[]> {
-    return this.http.get<Employee[]>(`${this.URL}/role/associate`, this.options);
+    const headerDict = {
+      'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOiJBZGFtIiwibGFzdE5hbWUiOiJSYW5pZXJpIiwicm9sZSI6ImFzc29jaWF0ZSIsImVtcGxveWVlSWQiOjF9.2LI3VTRZugKOb27f-oAjEK7K1rX7DDTU36zTx6ev4vE',
+    }
+
+    const requestOptions = {
+      headers: new HttpHeaders(headerDict),
+    };
+
+    const result = this.http.get(this.url, requestOptions);
+    return result;
   }
 
 }
