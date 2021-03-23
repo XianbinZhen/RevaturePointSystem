@@ -2,27 +2,26 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Employee } from '../models/employee';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { UserAuthService } from './user-auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AssociateService {
 
-  url = `http://localhost:8080/role/associate`
+  URL = "http://104.154.236.243:8080";
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private userAuthService: UserAuthService) { }
+
+  options = {
+    headers: {
+      Authorization: this.userAuthService.getJwtToken()!
+    } 
+  }
 
   getAllAssociates() {
 
-    const headerDict = {
-      'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOiJBZGFtIiwibGFzdE5hbWUiOiJSYW5pZXJpIiwicm9sZSI6ImFzc29jaWF0ZSIsImVtcGxveWVlSWQiOjF9.2LI3VTRZugKOb27f-oAjEK7K1rX7DDTU36zTx6ev4vE',
-    }
-
-    const requestOptions = {
-      headers: new HttpHeaders(headerDict),
-    };
-
-    const result = this.http.get(this.url, requestOptions);
+    const result = this.http.get(this.URL, this.options);
     return result;
   }
 

@@ -2,26 +2,26 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Price } from '../models/price';
+import { UserAuthService } from './user-auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PriceService {
 
-  url = "http://localhost:8080/prize";
+  URL = "http://104.154.236.243:8080";
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private userAuthService: UserAuthService) { }
 
-  getAllPrice() {
-    const headerDict = {
-      'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOiJBZGFtIiwibGFzdE5hbWUiOiJSYW5pZXJpIiwicm9sZSI6ImFzc29jaWF0ZSIsImVtcGxveWVlSWQiOjF9.2LI3VTRZugKOb27f-oAjEK7K1rX7DDTU36zTx6ev4vE',
-    }
+  options = {
+    headers: {
+      Authorization: this.userAuthService.getJwtToken()!
+    } 
+  }
 
-    const requestOptions = {
-      headers: new HttpHeaders(headerDict),
-    };
+  getAllPrice(): Observable<Price> {
 
-    const result = this.http.get(this.url, requestOptions);
+    const result = this.http.get<Price>(`${this.URL}/prize`, this.options);
     return result;
   }
 }
