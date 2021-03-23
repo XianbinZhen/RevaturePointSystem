@@ -42,4 +42,8 @@ export class EmployeeService {
     return this.http.get<Employee[]>(`${this.URL}/batch/${emp.batchId}`, this.options);
   }
 
+  updateEmployeeById(): Observable<Employee> {
+      
+  }
+
 }

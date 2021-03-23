@@ -17,6 +17,7 @@ export class LeaderboardPageComponent implements OnInit {
 
   @Output() actionEvent = new EventEmitter();
   @Input() actionType: string = "";
+  @Input() changeValue = false;
   showAction = false;
 
   

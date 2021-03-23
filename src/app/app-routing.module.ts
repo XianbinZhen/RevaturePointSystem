@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { Price } from './shared/models/price';
 import { AdminAuthGuardService } from './shared/services/admin-auth-guard.service';
 import { AuthGuardService } from './shared/services/auth-guard.service';
 import { AddPrizePageComponent } from './views/add-prize-page/add-prize-page.component';

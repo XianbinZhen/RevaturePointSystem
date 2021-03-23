@@ -31,7 +31,7 @@ export class UserAuthService {
     return this.http.post<Employee>(`${this.baseURL}/employee`, newEmployee);
   }
   
-  getEmployeeByID(user: User): Observable<any> {
+  getEmployeeByID(user: User): Observable<Employee> {
     let options = {
       headers: {
         Authorization: this.getJwtToken()!
