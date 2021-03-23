@@ -15,7 +15,17 @@ export class LoginPageComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private snackbar: MatSnackBar,
     private route: ActivatedRoute, private router: Router, 
-    private userAuthService: UserAuthService) {}
+    private userAuthService: UserAuthService) 
+    {
+      const username = new FormControl('', Validators.required);
+      const password = new FormControl('', Validators.required);
+      this.loginForm = fb.group(
+        {
+          username,
+          password
+        }
+      );
+    }
 
   ngOnInit() {
     if(this.userAuthService.isLoggedIn()) {
@@ -26,14 +36,15 @@ export class LoginPageComponent implements OnInit {
         duration: 3000
       });
     }
-    const username = new FormControl('', Validators.required);
-    const password = new FormControl('', Validators.required);
-    this.loginForm = this.fb.group(
-      {
-        username,
-        password
-      }
-    );
+
+    // const username = new FormControl('', Validators.required);
+    // const password = new FormControl('', Validators.required);
+    // this.loginForm = this.fb.group(
+    //   {
+    //     username,
+    //     password
+    //   }
+    // );
   }
 
   onSubmit() {
