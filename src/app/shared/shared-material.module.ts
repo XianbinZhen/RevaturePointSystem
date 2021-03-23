@@ -34,6 +34,7 @@ import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MatSliderModule } from "@angular/material/slider";
 import { MatToolbarModule } from "@angular/material/toolbar";
+import {ScrollingModule} from '@angular/cdk/scrolling';
 @NgModule({
   exports: [
     MatCheckboxModule,
@@ -71,7 +72,8 @@ import { MatToolbarModule } from "@angular/material/toolbar";
     MatRippleModule,
     MatBadgeModule,
     MatBottomSheetModule,
-    MatDividerModule
+    MatDividerModule,
+    ScrollingModule
   ]
 })
 export class SharedMaterialModule { }

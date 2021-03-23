@@ -1,0 +1,5 @@
+<mat-form-field class="mt-2">
+    <mat-label class="form-label">Amount to give away</mat-label>
+    <input type="number" [(ngModel)]="amount" matInput>
+</mat-form-field>
+<app-leaderboard-page (actionEvent)="action($event)" [actionType]="actionType" [changeValue]='changeValue'></app-leaderboard-page>

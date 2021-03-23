@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
@@ -13,12 +13,20 @@ import { AppLoaderService } from 'src/app/shared/shared-component/app-loader/app
   templateUrl: './leaderboard-page.component.html',
   styleUrls: ['./leaderboard-page.component.scss'],
 })
-export class LeaderboardPageComponent implements OnInit {
+export class LeaderboardPageComponent implements OnInit, OnChanges {
+
+  @Output() actionEvent = new EventEmitter();
+  @Input() actionType: string = "";
+  @Input() changeValue = false;
+  showAction = false;
+
+  
   displayedColumns: string[] = [
     'allTimeRevaPoints',
     'currentRevaPoints',
     'fname',
     'lname',
+    'action',
   ];
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -32,6 +40,23 @@ export class LeaderboardPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.loadDate();
+  }
+
+  ngOnChanges(changes: { [key: string]: SimpleChange }): void {
+    if (changes['changeValue'] &&
+          changes['changeValue'].previousValue !== undefined &&
+          !changes['changeValue'].isFirstChange() ) {
+            this.loadDate();
+          }
+    }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  loadDate() {
     this.loader.open();
     this.employeeService.getAllAssociates().subscribe(
       (res) => {
@@ -41,7 +66,7 @@ export class LeaderboardPageComponent implements OnInit {
         this.loader.close();
       },
       (error) => {
-        console.log("error", error);
+        console.log('error', error);
         this.snackbar.open(error?.error?.error, 'error', {
           duration: 3000,
         });
@@ -50,9 +75,4 @@ export class LeaderboardPageComponent implements OnInit {
     );
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-  
 }

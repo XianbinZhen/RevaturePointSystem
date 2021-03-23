@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { Price } from './shared/models/price';
 import { AdminAuthGuardService } from './shared/services/admin-auth-guard.service';
 import { AuthGuardService } from './shared/services/auth-guard.service';
 import { BatchTableComponent } from './views/batch-table/batch-table.component';
 import { AddPrizePageComponent } from './views/add-prize-page/add-prize-page.component';
 import { AssociatePageComponent } from './views/associate-page/associate-page.component';
+import { GiveRevaturePointComponent } from './views/give-revature-point/give-revature-point.component';
 import { HomePageComponent } from './views/home-page/home-page.component';
 import { LeaderboardPageComponent } from './views/leaderboard-page/leaderboard-page.component';
 import { LoginPageComponent } from './views/login-page/login-page.component';
@@ -28,6 +28,7 @@ const routes: Routes = [
       { path: 'addPrize', component: AddPrizePageComponent },
       { path: 'leaderboard', component: LeaderboardPageComponent },
       { path: 'batch', component: BatchTableComponent },
+      { path: 'givePoint', component: GiveRevaturePointComponent }
     ],
   },
   {

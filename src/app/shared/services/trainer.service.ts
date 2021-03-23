@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Employee } from '../models/employee';
 import { Prize } from '../models/prize';
 import { UserAuthService } from './user-auth.service';
 
@@ -9,7 +10,7 @@ import { UserAuthService } from './user-auth.service';
 })
 export class TrainerService {
 
-  URL = "http://localhost:8080";
+  URL = "http://104.154.236.243:8080";
 
   options = {
     headers: {
@@ -28,5 +29,12 @@ export class TrainerService {
     return this.http.get<Prize>(`${this.URL}/prize`, this.options);
   }
 
+  updateEmployee(employee: Employee): Observable<Employee> {
+    return this.http.put<Employee>(`${this.URL}/employee/${employee.employeeId}`, employee, this.options);
+  }
+
+  getEmployeeById(id: number): Observable<Employee> {
+    return this.http.get<Employee>(`${this.URL}/employee/${id}`, this.options);
+  }
 
 }
