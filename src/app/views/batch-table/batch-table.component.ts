@@ -15,6 +15,7 @@ import { AppLoaderService } from 'src/app/shared/shared-component/app-loader/app
   styleUrls: ['./batch-table.component.scss']
 })
 export class BatchTableComponent implements OnInit {
+  batchId:string = "0";
   displayedColumns: string[] = [
     'allTimeRevaPoints',
     'currentRevaPoints',
@@ -34,8 +35,12 @@ export class BatchTableComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.loadBatch();
+  }
+
+  loadBatch(){
     this.loader.open();
-    this.employeeService.getAllAssociatesByBatch(this.batchServie.id).subscribe(
+    this.employeeService.getAllAssociatesByBatch(Number.parseInt(this.batchId)).subscribe(
       (res) => {
         this.dataSource = new MatTableDataSource<Employee>(res);
         this.dataSource.sort = this.sort;

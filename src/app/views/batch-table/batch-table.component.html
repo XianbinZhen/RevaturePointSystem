@@ -1,4 +1,11 @@
 <div>
+    <mat-label>Batch ID</mat-label>
+    <input matInput type="text" name="batch" [(ngModel)]="batchId"/>
+    <br>
+    <button mat-flat-button color="primary" class="me-3" (click)="loadBatch()">Select</button>
+</div>
+
+<div>
     <mat-form-field class="w-100">
         <mat-label>Filter</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
