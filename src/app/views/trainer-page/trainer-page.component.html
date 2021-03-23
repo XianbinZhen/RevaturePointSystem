@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand navbar-light bg-light d-flex flex-row flex-wrap">
-    <div class="flex flex-wrap">
+    <div class="flex flex-wrap text-center">
         <img [src]="imgThumbnail || defaultThumbnail" alt="" class="img-thumbnail m-2 rounded-pill">
-        <h2 class="navbar-brand d-inline">Trainer Home</h2>
+        <h2 class="navbar-brand d-inline">Welcome  {{role | uppercase}} : {{firstName}} {{lastName}}</h2>
     </div>
     <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"

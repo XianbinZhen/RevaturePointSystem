@@ -5,15 +5,15 @@
     </mat-form-field>
 
     <table mat-table [dataSource]="dataSource" matSort matSortActive="allTimeRevaPoints" matSortDirection="desc"
-        class="table">
+        class="mat-elevation-z8">
 
         <ng-container matColumnDef="allTimeRevaPoints">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> allTimeRevaPoints </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> All Time RevaPoints </th>
             <td mat-cell *matCellDef="let element"> {{element.allTimeRevaPoints}} </td>
         </ng-container>
 
         <ng-container matColumnDef="currentRevaPoints">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> currentRevaPoints </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Current RevaPoints </th>
             <td mat-cell *matCellDef="let element"> {{element.currentRevaPoints}} </td>
         </ng-container>
 
