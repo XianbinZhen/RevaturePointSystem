@@ -13,6 +13,7 @@ import { NotFoundPageComponent } from './views/not-found-page/not-found-page.com
 import { PricePageComponent } from './views/price-page/price-page.component';
 import { RegisterPageComponent } from './views/register-page/register-page.component';
 import { TrainerPageComponent } from './views/trainer-page/trainer-page.component';
+import { AssignBatchComponent } from './views/assign-batch/assign-batch.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -28,7 +29,8 @@ const routes: Routes = [
       { path: 'addPrize', component: AddPrizePageComponent },
       { path: 'leaderboard', component: LeaderboardPageComponent },
       { path: 'batch', component: BatchTableComponent },
-      { path: 'givePoint', component: GiveRevaturePointComponent }
+      { path: 'givePoint', component: GiveRevaturePointComponent },
+      { path: 'assignBatch', component: AssignBatchComponent }
     ],
   },
   {

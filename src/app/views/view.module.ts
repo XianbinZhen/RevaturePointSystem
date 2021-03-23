@@ -17,6 +17,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireModule } from '@angular/fire';
 import { BatchTableComponent } from './batch-table/batch-table.component';
 import { GiveRevaturePointComponent } from './give-revature-point/give-revature-point.component';
+import { AssignBatchComponent } from './assign-batch/assign-batch.component';
 
 const components = [
   HomePageComponent,
@@ -29,7 +30,8 @@ const components = [
   NotFoundPageComponent,
   AddPrizePageComponent,
   BatchTableComponent,
-  GiveRevaturePointComponent
+  GiveRevaturePointComponent,
+  AssignBatchComponent
 ];
 
 @NgModule({

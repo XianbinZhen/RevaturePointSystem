@@ -22,6 +22,8 @@ export class LeaderboardPageComponent implements OnInit, OnChanges {
 
   
   displayedColumns: string[] = [
+    'imgURL',
+    'batchId',
     'allTimeRevaPoints',
     'currentRevaPoints',
     'fname',

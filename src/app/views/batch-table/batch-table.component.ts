@@ -17,6 +17,8 @@ import { AppLoaderService } from 'src/app/shared/shared-component/app-loader/app
 export class BatchTableComponent implements OnInit {
   batchId:string = "0";
   displayedColumns: string[] = [
+    'imgURL',
+    'batchId',
     'allTimeRevaPoints',
     'currentRevaPoints',
     'fname',
