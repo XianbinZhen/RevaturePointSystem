@@ -27,6 +27,7 @@ const routes: Routes = [
       { path: '', redirectTo: "leaderboard", pathMatch: 'full' },
       { path: 'addPrize', component: AddPrizePageComponent },
       { path: 'leaderboard', component: LeaderboardPageComponent },
+      { path: 'batch', component: BatchTableComponent },
     ],
   },
   {
@@ -36,10 +37,7 @@ const routes: Routes = [
   },
   { path: 'leaderboard', component: LeaderboardPageComponent },
   { path: 'price', component: PricePageComponent },
-  { path: 'test', component: BatchTableComponent },
   { path: '**', component: NotFoundPageComponent },
-
-  
 ];
 
 @NgModule({
