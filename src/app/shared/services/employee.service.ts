@@ -9,7 +9,7 @@ import { UserAuthService } from './user-auth.service';
 })
 export class EmployeeService {
 
-  URL = "http://localhost:8080";
+  URL = "http://104.154.236.243:8080";
 
   options = {
     headers: {

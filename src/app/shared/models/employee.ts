@@ -4,8 +4,9 @@ export class Employee {
     fname!: string;
     lname!: string;
     username!: string;
-    password!: string
+    password!: string;
     currentRevaPoints!: number;
     allTimeRevaPoints!: number;
     batchId!: number;
+    imgURL!: string;
 }

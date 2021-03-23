@@ -1,7 +1,7 @@
 <div class="background-view d-flex justify-content-center align-items-center">
     <div class="d-md-flex flex-wrap gap-2 justify-content-around align-items-center p-3 rounded border bg-light">
-        <div class="mx-2">
-            <img width="200px" src="../../../assets/img/background.jpg" alt="logo" class="rounded" />
+        <div class="mx-2 text-center">
+            <img width="200px" [src]="uploadIMG || defaultIMG" alt="logo" class="rounded" />
         </div>
         <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="d-flex flex-column gap-2">
             <mat-form-field>
@@ -24,10 +24,16 @@
                 <mat-label>Confirm Password</mat-label>
                 <input matInput formControlName="confirmPassword" type="password" name="confirmPassword" />
             </mat-form-field>
+            <div>
+                <mat-label>Add my photo</mat-label>
+                <input type="file" accept="image/png, image/jpeg" class="form-control" (change)="uploadFile($event)">
+                <mat-progress-bar [value]="progressBarValue" max="100" class="w-100"></mat-progress-bar>
+            </div>
             <div class="d-flex gap-2 align-items-center">
                 <button mat-flat-button color="primary" class="me-3">Sign Up</button>
                 <span>or</span>
                 <a mat-button color="primary" routerLink="/login">Sign In</a>
+                <button mat-button color="accent" (click)="clearFields()" type="button">Clear</button>
             </div>
         </form>
     </div>

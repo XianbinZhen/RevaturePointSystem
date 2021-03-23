@@ -13,18 +13,19 @@ export class UserAuthService {
 
   JWT_TOKEN = "JWT_TOKEN_REVATURE_POINT_SYSTEM";
   APP_USER = "REV_POINT_SYS_USER";
+  baseURL = 'http://104.154.236.243:8080';
   user?: User;
 
   constructor(private localStorage: LocalStorageService,
     private router: Router, private http: HttpClient) { }
 
   login(user: User): Observable<User>{
-    return this.http.post<User>("http://localhost:8080/login", user);
+    return this.http.post<User>(`${this.baseURL}/login`, user);
   }
 
 
   register(newEmployee: Employee): Observable<Employee> {
-    return this.http.post<Employee>("http://localhost:8080/employee", newEmployee);
+    return this.http.post<Employee>(`${this.baseURL}/employee`, newEmployee);
   }
 
 
