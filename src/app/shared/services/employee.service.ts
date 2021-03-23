@@ -28,4 +28,7 @@ export class EmployeeService {
     return this.http.get<Employee[]>(`${this.URL}/role/associate`, this.options);
   }
 
+  getAllAssociatesByBatch(id:Number): Observable<Employee[]> {
+    return this.http.get<Employee[]>(`${this.URL}/batch/` + id, this.options);
+  }
 }

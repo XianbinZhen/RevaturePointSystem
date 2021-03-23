@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { Price } from './shared/models/price';
 import { AdminAuthGuardService } from './shared/services/admin-auth-guard.service';
 import { AuthGuardService } from './shared/services/auth-guard.service';
+import { BatchTableComponent } from './views/batch-table/batch-table.component';
 import { AddPrizePageComponent } from './views/add-prize-page/add-prize-page.component';
 import { AssociatePageComponent } from './views/associate-page/associate-page.component';
 import { HomePageComponent } from './views/home-page/home-page.component';
@@ -35,7 +36,10 @@ const routes: Routes = [
   },
   { path: 'leaderboard', component: LeaderboardPageComponent },
   { path: 'price', component: PricePageComponent },
+  { path: 'test', component: BatchTableComponent },
   { path: '**', component: NotFoundPageComponent },
+
+  
 ];
 
 @NgModule({
