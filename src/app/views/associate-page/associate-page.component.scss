@@ -5,9 +5,48 @@
     background-position: center center;
     object-fit: contain;
     background-attachment: fixed;
+    transition: scale();
+    flex-wrap: wrap;
 }
 .card-panel{
-    height: 20vh;
-    width: 260px;
+    height: 50vh;
+    width: 320px;
     margin:10px;
+}
+
+td{
+  padding: 10px 0;
+}
+
+.card-panel.table-card{
+  height: 70vh;
+  width: 320px;
+  margin:10px;
+}
+
+.batch-view {
+    height: 80%;
+    width: 100%;
+    transition: scale();
+  }
+
+  .page-view {
+    height: 75vh;
+    width: 400px;
+    //transition: scale();
+    // display: flex;
+    // flex-wrap: wrap;
+    //justify-content: center;
+    // align-items: center;
+    // align-self: center;
+  }
+
+
+  .main-div{
+    margin:auto;
+    width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-self: center;
 }
