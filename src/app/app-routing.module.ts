@@ -5,6 +5,7 @@ import { AdminAuthGuardService } from './shared/services/admin-auth-guard.servic
 import { AuthGuardService } from './shared/services/auth-guard.service';
 import { AddPrizePageComponent } from './views/add-prize-page/add-prize-page.component';
 import { AssociatePageComponent } from './views/associate-page/associate-page.component';
+import { GiveRevaturePointComponent } from './views/give-revature-point/give-revature-point.component';
 import { HomePageComponent } from './views/home-page/home-page.component';
 import { LeaderboardPageComponent } from './views/leaderboard-page/leaderboard-page.component';
 import { LoginPageComponent } from './views/login-page/login-page.component';
@@ -26,6 +27,7 @@ const routes: Routes = [
       { path: '', redirectTo: "leaderboard", pathMatch: 'full' },
       { path: 'addPrize', component: AddPrizePageComponent },
       { path: 'leaderboard', component: LeaderboardPageComponent },
+      { path: 'givePoint', component: GiveRevaturePointComponent }
     ],
   },
   {
