@@ -73,7 +73,7 @@ export class RegisterPageComponent implements OnInit {
                   this.loader.close();
                 },
                 (error) => {
-                  this.snackbar.open(error.error.error, 'error', {
+                  this.snackbar.open(error?.error?.error, 'error', {
                     duration: 3000,
                   });
                 }
@@ -106,7 +106,8 @@ export class RegisterPageComponent implements OnInit {
     const batchId: number = 0;
     const role: string = "associate";
     const imgURL: string = this.downloadURL;
-    let newEmployee: Employee = {username,password,lname,fname, employeeId, currentRevaPoints, allTimeRevaPoints, batchId, role, imgURL};
+    const prizes: this.prizes;
+    let newEmployee: Employee = {username,password,lname,fname, employeeId, currentRevaPoints, allTimeRevaPoints, batchId, role, imgURL, prizes[]};
 
     this.userAuthService.register(newEmployee).subscribe( res => {
       this.snackbar.open("User created", "close", {

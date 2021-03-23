@@ -1,4 +1,30 @@
-<p>trainer-page works!</p>
-<a mat-raised-button [routerLink]="[ 'addPrize' ]">Add prize</a>
-<router-outlet></router-outlet>
+<nav class="navbar navbar-expand navbar-light bg-light d-flex flex-row flex-wrap">
+    <div class="flex flex-wrap">
+        <img [src]="imgThumbnail || defaultThumbnail" alt="" class="img-thumbnail m-2 rounded-pill">
+        <h2 class="navbar-brand d-inline">Trainer Home</h2>
+    </div>
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a [routerLink]="[ 'leaderboard' ]" routerLinkActive="active" class="nav-link">Leaderboard</a>
+                </li>
+                <li class="nav-item">
+                    <a [routerLink]="[ 'addPrize' ]" routerLinkActive="active" class="nav-link">Add prize</a>
+                </li>
+                <li class="nav-item">
+                    <a [routerLink]="[ 'givePoint' ]" routerLinkActive="active" class="nav-link">Give away Revature
+                        Point</a>
+                <li class="nav-item">
+                    <button mat-button color="accent" (click)="logout()" class="flex-end">logout</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
+<router-outlet></router-outlet>

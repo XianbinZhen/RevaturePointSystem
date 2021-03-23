@@ -1,3 +1,5 @@
+import { Prize } from "./prize";
+
 export class Employee {
     employeeId!: number;
     role!: string;
@@ -9,4 +11,5 @@ export class Employee {
     allTimeRevaPoints!: number;
     batchId!: number;
     imgURL!: string;
+    prizes!: Prize[];
 }

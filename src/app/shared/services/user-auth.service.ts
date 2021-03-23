@@ -16,6 +16,9 @@ export class UserAuthService {
   baseURL = 'http://104.154.236.243:8080';
   user?: User;
 
+ 
+
+
   constructor(private localStorage: LocalStorageService,
     private router: Router, private http: HttpClient) { }
 
@@ -27,11 +30,24 @@ export class UserAuthService {
   register(newEmployee: Employee): Observable<Employee> {
     return this.http.post<Employee>(`${this.baseURL}/employee`, newEmployee);
   }
+  
+  getEmployeeByID(user: User): Observable<any> {
+    let options = {
+      headers: {
+        Authorization: this.getJwtToken()!
+      } 
+    }
+    return this.http.get<Employee>(`${this.baseURL}/employee/${user.employeeId}`, options);
+  }
 
 
   getJwtToken(): string | null {
     console.log("jwt-token", this.localStorage.getItem(this.JWT_TOKEN));
     return this.localStorage.getItem(this.JWT_TOKEN);
+  }
+
+  getUser(): User {
+    return JSON.parse(this.localStorage.getItem(this.APP_USER)!);
   }
 
   isLoggedIn(): boolean {

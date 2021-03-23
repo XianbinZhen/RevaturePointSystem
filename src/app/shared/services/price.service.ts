@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Price } from '../models/price';
+import { Prize } from '../models/prize';
 import { UserAuthService } from './user-auth.service';
 
 @Injectable({
@@ -19,9 +19,9 @@ export class PriceService {
     } 
   }
 
-  getAllPrice(): Observable<Price> {
+  getAllPrice(): Observable<Prize> {
 
-    const result = this.http.get<Price>(`${this.URL}/prize`, this.options);
+    const result = this.http.get<Prize>(`${this.URL}/prize`, this.options);
     return result;
   }
 }

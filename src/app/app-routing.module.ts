@@ -5,6 +5,7 @@ import { AdminAuthGuardService } from './shared/services/admin-auth-guard.servic
 import { AuthGuardService } from './shared/services/auth-guard.service';
 import { AddPrizePageComponent } from './views/add-prize-page/add-prize-page.component';
 import { AssociatePageComponent } from './views/associate-page/associate-page.component';
+import { GiveRevaturePointComponent } from './views/give-revature-point/give-revature-point.component';
 import { HomePageComponent } from './views/home-page/home-page.component';
 import { LeaderboardPageComponent } from './views/leaderboard-page/leaderboard-page.component';
 import { LoginPageComponent } from './views/login-page/login-page.component';
@@ -14,27 +15,33 @@ import { RegisterPageComponent } from './views/register-page/register-page.compo
 import { TrainerPageComponent } from './views/trainer-page/trainer-page.component';
 
 const routes: Routes = [
-  { path: "", redirectTo: "home", pathMatch: "full" },
-  { path: "home", component: HomePageComponent },
-  { path: "login", component: LoginPageComponent },
-  { path: "register", component: RegisterPageComponent },
-  { path: "trainer", component: TrainerPageComponent, 
-  // canActivate: [AuthGuardService, AdminAuthGuardService],
-    children: [ 
-      { path: "addPrize", component: AddPrizePageComponent },
-      { path: "leaderboard", component: LeaderboardPageComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomePageComponent },
+  { path: 'login', component: LoginPageComponent },
+  { path: 'register', component: RegisterPageComponent },
+  {
+    path: 'trainer',
+    component: TrainerPageComponent,
+    canActivate: [AuthGuardService, AdminAuthGuardService],
+    children: [
+      { path: '', redirectTo: "leaderboard", pathMatch: 'full' },
+      { path: 'addPrize', component: AddPrizePageComponent },
+      { path: 'leaderboard', component: LeaderboardPageComponent },
+      { path: 'givePoint', component: GiveRevaturePointComponent }
     ],
-    },
-  { path: "associate", component: AssociatePageComponent, 
-    // canActivate: [AuthGuardService] 
   },
-  { path: "leaderboard", component: LeaderboardPageComponent },
-  { path: "price", component: PricePageComponent },
-  { path: "**", component: NotFoundPageComponent}
+  {
+    path: 'associate',
+    component: AssociatePageComponent,
+    // canActivate: [AuthGuardService]
+  },
+  { path: 'leaderboard', component: LeaderboardPageComponent },
+  { path: 'price', component: PricePageComponent },
+  { path: '**', component: NotFoundPageComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
