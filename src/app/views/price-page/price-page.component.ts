@@ -15,7 +15,7 @@ export class PricePageComponent implements OnInit {
     this.getAllPrizes()
   }
 
-  async getAllPrizes(){
+  getAllPrizes(){
     this.priceService.getAllPrice().subscribe((result)=>{
       this.data = result;
       console.log(this.data)

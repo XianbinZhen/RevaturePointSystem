@@ -14,27 +14,32 @@ import { RegisterPageComponent } from './views/register-page/register-page.compo
 import { TrainerPageComponent } from './views/trainer-page/trainer-page.component';
 
 const routes: Routes = [
-  { path: "", redirectTo: "home", pathMatch: "full" },
-  { path: "home", component: HomePageComponent },
-  { path: "login", component: LoginPageComponent },
-  { path: "register", component: RegisterPageComponent },
-  { path: "trainer", component: TrainerPageComponent, 
-  // canActivate: [AuthGuardService, AdminAuthGuardService],
-    children: [ 
-      { path: "addPrize", component: AddPrizePageComponent },
-      { path: "leaderboard", component: LeaderboardPageComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomePageComponent },
+  { path: 'login', component: LoginPageComponent },
+  { path: 'register', component: RegisterPageComponent },
+  {
+    path: 'trainer',
+    component: TrainerPageComponent,
+    canActivate: [AuthGuardService, AdminAuthGuardService],
+    children: [
+      { path: '', redirectTo: "leaderboard", pathMatch: 'full' },
+      { path: 'addPrize', component: AddPrizePageComponent },
+      { path: 'leaderboard', component: LeaderboardPageComponent },
     ],
-    },
-  { path: "associate", component: AssociatePageComponent, 
-    // canActivate: [AuthGuardService] 
   },
-  { path: "leaderboard", component: LeaderboardPageComponent },
-  { path: "price", component: PricePageComponent },
-  { path: "**", component: NotFoundPageComponent}
+  {
+    path: 'associate',
+    component: AssociatePageComponent,
+    // canActivate: [AuthGuardService]
+  },
+  { path: 'leaderboard', component: LeaderboardPageComponent },
+  { path: 'price', component: PricePageComponent },
+  { path: '**', component: NotFoundPageComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
