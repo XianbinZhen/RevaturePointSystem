@@ -35,6 +35,8 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MatSliderModule } from "@angular/material/slider";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import {ScrollingModule} from '@angular/cdk/scrolling';
+import {IvyCarouselModule} from 'angular-responsive-carousel';
+
 @NgModule({
   exports: [
     MatCheckboxModule,
@@ -73,7 +75,8 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
     MatBadgeModule,
     MatBottomSheetModule,
     MatDividerModule,
-    ScrollingModule
+    ScrollingModule,
+    IvyCarouselModule
   ]
 })
 export class SharedMaterialModule { }
