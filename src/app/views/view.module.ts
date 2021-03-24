@@ -19,6 +19,7 @@ import { BatchTableComponent } from './batch-table/batch-table.component';
 import { GiveRevaturePointComponent } from './give-revature-point/give-revature-point.component';
 import { AssignBatchComponent } from './assign-batch/assign-batch.component';
 import { AssociateHomeComponent } from './associate-home/associate-home.component';
+import { BatchLeaderBoardComponent } from './batch-leader-board/batch-leader-board.component';
 
 const components = [
   HomePageComponent,
@@ -33,7 +34,8 @@ const components = [
   BatchTableComponent,
   GiveRevaturePointComponent,
   AssignBatchComponent,
-  AssociateHomeComponent
+  AssociateHomeComponent,
+  BatchLeaderBoardComponent
 ];
 
 @NgModule({

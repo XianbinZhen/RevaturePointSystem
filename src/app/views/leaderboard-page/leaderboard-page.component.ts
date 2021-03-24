@@ -1,4 +1,13 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChange,
+  ViewChild,
+} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
@@ -14,13 +23,11 @@ import { AppLoaderService } from 'src/app/shared/shared-component/app-loader/app
   styleUrls: ['./leaderboard-page.component.scss'],
 })
 export class LeaderboardPageComponent implements OnInit, OnChanges {
-
   @Output() actionEvent = new EventEmitter();
-  @Input() actionType: string = "";
+  @Input() actionType: string = '';
   @Input() changeValue = false;
   showAction = false;
 
-  
   displayedColumns: string[] = [
     'imgURL',
     'batchId',
@@ -46,12 +53,14 @@ export class LeaderboardPageComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: { [key: string]: SimpleChange }): void {
-    if (changes['changeValue'] &&
-          changes['changeValue'].previousValue !== undefined &&
-          !changes['changeValue'].isFirstChange() ) {
-            this.loadDate();
-          }
+    if (
+      changes['changeValue'] &&
+      changes['changeValue'].previousValue !== undefined &&
+      !changes['changeValue'].isFirstChange()
+    ) {
+      this.loadDate();
     }
+  }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -76,5 +85,4 @@ export class LeaderboardPageComponent implements OnInit, OnChanges {
       }
     );
   }
-
 }

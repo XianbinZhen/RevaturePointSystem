@@ -15,6 +15,7 @@ import { RegisterPageComponent } from './views/register-page/register-page.compo
 import { TrainerPageComponent } from './views/trainer-page/trainer-page.component';
 import { AssignBatchComponent } from './views/assign-batch/assign-batch.component';
 import { AssociateHomeComponent } from './views/associate-home/associate-home.component';
+import { BatchLeaderBoardComponent } from './views/batch-leader-board/batch-leader-board.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -41,6 +42,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: "dashboard", pathMatch: 'full' },
       { path: 'dashboard', component: AssociatePageComponent },
+      { path: 'batchLeaderboard', component: BatchLeaderBoardComponent },
       { path: 'leaderboard', component: LeaderboardPageComponent },
       { path: 'prize', component: PricePageComponent },
     ]
