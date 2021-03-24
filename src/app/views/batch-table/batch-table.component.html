@@ -1,6 +1,8 @@
 <div>
-    <mat-label>Batch ID</mat-label>
-    <input matInput type="text" name="batch" [(ngModel)]="batchId"/>
+    <mat-form-field>
+        <mat-label>Batch ID</mat-label>
+        <input matInput type="text" name="batch" [(ngModel)]="batchId"/>
+    </mat-form-field>
     <br>
     <button mat-flat-button color="primary" class="me-3" (click)="loadBatch()">Select</button>
 </div>
