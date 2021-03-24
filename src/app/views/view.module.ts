@@ -15,7 +15,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AddPrizePageComponent } from './add-prize-page/add-prize-page.component';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireModule } from '@angular/fire';
+import { BatchTableComponent } from './batch-table/batch-table.component';
 import { GiveRevaturePointComponent } from './give-revature-point/give-revature-point.component';
+import { AssignBatchComponent } from './assign-batch/assign-batch.component';
 
 const components = [
   HomePageComponent,
@@ -27,7 +29,9 @@ const components = [
   PricePageComponent,
   NotFoundPageComponent,
   AddPrizePageComponent,
-  GiveRevaturePointComponent
+  BatchTableComponent,
+  GiveRevaturePointComponent,
+  AssignBatchComponent
 ];
 
 @NgModule({

@@ -5,6 +5,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { finalize } from 'rxjs/operators';
 import { Employee } from 'src/app/shared/models/employee';
+import { Prize } from 'src/app/shared/models/prize';
 import { User } from 'src/app/shared/models/user';
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 import { AppLoaderService } from 'src/app/shared/shared-component/app-loader/app-loader.service';
@@ -106,7 +107,8 @@ export class RegisterPageComponent implements OnInit {
     const batchId: number = 0;
     const role: string = "associate";
     const imgURL: string = this.downloadURL;
-    let newEmployee: Employee = {username,password,lname,fname, employeeId, currentRevaPoints, allTimeRevaPoints, batchId, role, imgURL};
+    const prizes: Prize[] = [];
+    let newEmployee: Employee = {username,password,lname,fname, employeeId, currentRevaPoints, allTimeRevaPoints, batchId, role, imgURL, prizes};
 
     this.userAuthService.register(newEmployee).subscribe( res => {
       this.snackbar.open("User created", "close", {

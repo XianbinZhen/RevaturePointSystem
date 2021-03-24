@@ -6,6 +6,10 @@ import { UserAuthService } from 'src/app/shared/services/user-auth.service';
   styleUrls: ['./trainer-page.component.scss'],
 })
 export class TrainerPageComponent implements OnInit {
+
+  role = '';
+  firstName = '';
+  lastName = '';
   
   defaultThumbnail =
     'https://firebasestorage.googleapis.com/v0/b/zhen-305115.appspot.com/o/REVPOINTSYS%2F27315031.jpg?alt=media&token=fbd77075-1f08-41c6-83fc-8560578b20f2';
@@ -19,6 +23,9 @@ export class TrainerPageComponent implements OnInit {
       .subscribe(
         (res) => {
           this.imgThumbnail = res.imgURL;
+          this.firstName = res.fname;
+          this.lastName = res.lname;
+          this.role = res.role;
         },
         (error) => {
           console.log('error', error);

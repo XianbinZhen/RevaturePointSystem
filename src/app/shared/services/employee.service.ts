@@ -42,4 +42,7 @@ export class EmployeeService {
     return this.http.get<Employee[]>(`${this.URL}/batch/${emp.batchId}`, this.options);
   }
 
+  getAllAssociatesByBatch(id:Number): Observable<Employee[]> {
+    return this.http.get<Employee[]>(`${this.URL}/batch/` + id, this.options);
+  }
 }
