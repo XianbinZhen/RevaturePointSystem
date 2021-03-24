@@ -4,6 +4,7 @@ import { MatPaginator} from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+
 import { Employee } from 'src/app/shared/models/employee';
 import { EmployeeService } from 'src/app/shared/services/employee.service';
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
@@ -20,14 +21,14 @@ export class AssociatePageComponent implements OnInit{
 
   constructor(private employeeService:EmployeeService, private userAuthService: UserAuthService, private snackbar: MatSnackBar, private loader: AppLoaderService) { 
   }
-  
+  cells:number = 1;
   jwt = this.userAuthService.getJwtToken();
   scrollbar=false;
   emp!:Employee; 
   batchmates:Employee[] = [];
   displayedColumns: string[] = ['fname', 'currentRevaPoints'];
   
-  @ViewChild(MatSort, {static: false}) sort!: MatSort;
+  @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   dataSource!:MatTableDataSource<Employee>;
  
@@ -43,7 +44,9 @@ export class AssociatePageComponent implements OnInit{
       }
     }
   }
+
   async ngOnInit(){
+    
     if(window.innerWidth < 1200){
       this.scrollbar = true;
     }
