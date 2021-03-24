@@ -23,8 +23,11 @@ export class AssociatePageComponent implements OnInit{
   }
   cells:number = 1;
   jwt = this.userAuthService.getJwtToken();
- 
-  emp!:Employee; 
+  
+  emp!:Employee;
+  imgThumbnail!:String;
+  defaultThumbnail:String = '../../../assets/img/user_default.png'
+
   batchmates:Employee[] = [];
   displayedColumns: string[] = ['fname', 'currentRevaPoints'];
   
@@ -57,10 +60,9 @@ export class AssociatePageComponent implements OnInit{
     this.checkSize(window.innerWidth);
     // Had to use async here to wait for employee data
     await this.getLoggedInEmployee();
-    
-
+  
+    this.imgThumbnail = this.emp.imgURL;
     this.loader.open();
-
     this.employeeService.getLoggedInEmployeeBatch(this.emp).subscribe(
        (res) => {
         this.batchmates = res;
