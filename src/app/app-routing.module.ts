@@ -14,6 +14,7 @@ import { PricePageComponent } from './views/price-page/price-page.component';
 import { RegisterPageComponent } from './views/register-page/register-page.component';
 import { TrainerPageComponent } from './views/trainer-page/trainer-page.component';
 import { AssignBatchComponent } from './views/assign-batch/assign-batch.component';
+import { AssociateHomeComponent } from './views/associate-home/associate-home.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -35,11 +36,15 @@ const routes: Routes = [
   },
   {
     path: 'associate',
-    component: AssociatePageComponent,
-    // canActivate: [AuthGuardService]
+    component: AssociateHomeComponent,
+    canActivate: [AuthGuardService],
+    children: [
+      { path: '', redirectTo: "dashboard", pathMatch: 'full' },
+      { path: 'dashboard', component: AssociatePageComponent },
+      { path: 'leaderboard', component: LeaderboardPageComponent },
+      { path: 'prize', component: PricePageComponent },
+    ]
   },
-  { path: 'leaderboard', component: LeaderboardPageComponent },
-  { path: 'price', component: PricePageComponent },
   { path: '**', component: NotFoundPageComponent },
 ];
 

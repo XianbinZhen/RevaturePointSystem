@@ -9,7 +9,7 @@
 
         <ng-container matColumnDef="imgURL">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> IMG</th>
-            <td mat-cell *matCellDef="let element" class="img-container"><img src="{{ element.imgURL }}" class="img-thumbnail rounded-pill "> </td>
+            <td mat-cell *matCellDef="let element" class="img-container"><img src="{{ element.imgURL }}" class="img-thumbnail rounded-pill" onerror="this.src='assets/img/user_default.png'"> </td>
         </ng-container>
         
         <ng-container matColumnDef="batchId">

@@ -18,6 +18,7 @@ import { AngularFireModule } from '@angular/fire';
 import { BatchTableComponent } from './batch-table/batch-table.component';
 import { GiveRevaturePointComponent } from './give-revature-point/give-revature-point.component';
 import { AssignBatchComponent } from './assign-batch/assign-batch.component';
+import { AssociateHomeComponent } from './associate-home/associate-home.component';
 
 const components = [
   HomePageComponent,
@@ -31,7 +32,8 @@ const components = [
   AddPrizePageComponent,
   BatchTableComponent,
   GiveRevaturePointComponent,
-  AssignBatchComponent
+  AssignBatchComponent,
+  AssociateHomeComponent
 ];
 
 @NgModule({

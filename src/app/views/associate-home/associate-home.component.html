@@ -1,0 +1,20 @@
+
+<div>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a [routerLink]="[ 'dashboard' ]" routerLinkActive="active" class="nav-link">Dashboard</a>
+        </li>
+        <li class="nav-item">
+            <a [routerLink]="[ 'leaderboard' ]" routerLinkActive="active" class="nav-link">Leaderboard</a>
+        </li>
+        <li class="nav-item">
+            <a [routerLink]="[ 'prize' ]" routerLinkActive="active" class="nav-link">View prize</a>
+        </li>
+        
+            
+        <li class="nav-item">
+            <button mat-button color="accent" (click)="logout()" class="flex-end">logout</button>
+        </li>
+    </ul>
+</div>
+<router-outlet></router-outlet>
