@@ -1,54 +1,22 @@
-<div class="background-view d-flex justify-content-center align-items-center">
+<div class="background-view d-flex justify-content-center align-items-center" id="background">
     <div class="main-div">
-        <cdk-virtual-scroll-viewport itemSize="100" class="page-view" *ngIf="scrollbar; else elseBlock">
-        <mat-card class="card-panel">
-            <div mat-card-avatar></div> 
-            <mat-card-title>{{emp.username}}</mat-card-title>
-            <mat-card-subtitle>{{emp.fname}} {{emp.lname}}, Revature {{emp.role}}</mat-card-subtitle>
-            <h4>Current RevaPoints: {{emp.currentRevaPoints}}</h4>
-            <h4>AllTime RevaPoints: {{emp.allTimeRevaPoints}}</h4>
-        </mat-card>
-        <mat-card class="card-panel table-card">
-            <h1>My Batch: {{emp.batchId}}</h1>
-            <table mat-table [dataSource]="dataSource" matSort class="table table-striped table-bordered">
-                <!-- Name Column -->
-                <ng-container matColumnDef="fname">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Associate Name </th>
-                  <td mat-cell *matCellDef="let b"> {{b.fname}} {{b.lname}}</td>
-                </ng-container>
-            
-                <!-- Points Column -->
-                <ng-container matColumnDef="currentRevaPoints">
-                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Current Points </th>
-                  <td mat-cell *matCellDef="let b"> {{b.currentRevaPoints}} </td>
-                </ng-container>
-          
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-              </table>
-              <mat-paginator #paginator [pageSize]="5" showFirstLastButtons></mat-paginator>
-        </mat-card>
-        <mat-card class="card-panel">
-            <h1>Prizes</h1>
-            <ul>
-                <li *ngFor="let p of emp.prizes">{{p.name}}</li>
-            </ul>
-            <a [routerLink]="[ '/price' ]" routerLinkActive="active" class="nav-link">View Prize Page</a>
-        </mat-card>
-    </cdk-virtual-scroll-viewport>
-    <ng-template #elseBlock>
         <mat-card class="card-panel"> 
             <mat-card-header>
                 <img mat-card-avatar [src]="emp.imgURL">
                 <mat-card-title>{{emp.username}}</mat-card-title>
                 <mat-card-subtitle>{{emp.fname}} {{emp.lname}}, Revature {{emp.role}}</mat-card-subtitle>
             </mat-card-header>
-            <h4>Current RevaPoints: {{emp.currentRevaPoints}}</h4>
-            <h4>AllTime RevaPoints: {{emp.allTimeRevaPoints}}</h4>
+            <h3>Current RevaPoints:</h3>
+            <h1 class="points">{{emp.currentRevaPoints}}</h1>
+            <h3>AllTime RevaPoints:</h3>
+            <h1 class="points">{{emp.allTimeRevaPoints}}</h1>
         </mat-card>
         <mat-card class="card-panel table-card">
-            <h1>My Batch: {{emp.batchId}}</h1>
-                <table mat-table [dataSource]="dataSource" matSort class="table table-striped table-bordered table-hover">
+            <mat-card-header>
+                <mat-card-title>My Batch Info</mat-card-title>
+                <mat-card-subtitle>Batch ID: {{emp.batchId}}</mat-card-subtitle>
+            </mat-card-header>
+                <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
                   <!-- Name Column -->
                   <ng-container matColumnDef="fname">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Associate Name </th>
@@ -68,20 +36,20 @@
               
         </mat-card>
         <mat-card class="card-panel">
-            <h1>Prizes</h1>
+            <h1>My Prizes</h1>
+            <hr>
             <carousel [cellsToShow]="cells">
                 <ng-container *ngFor="let p of emp.prizes">
                     <div class="carousel-cell">
-                            {{p.name}},
-                            {{p.description}}
-                            <br>
+                        <mat-card-header>
+                            <mat-card-title>{{p.name}}</mat-card-title>
+                            <mat-card-subtitle>{{p.description}}</mat-card-subtitle>
+                        </mat-card-header>
                             <img src="{{p.imgURL}}" alt="">
                     </div>
                 </ng-container>
             </carousel>
-
-            <a [routerLink]="[ '/price' ]" routerLinkActive="active" class="nav-link">View Prize Page</a>
+            <mat-card-footer><a [routerLink]="[ '/price' ]" routerLinkActive="active" class="nav-link">View Prize Page</a></mat-card-footer>  
         </mat-card>
-    </ng-template>
     </div>
 </div>

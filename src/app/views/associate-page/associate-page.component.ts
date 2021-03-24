@@ -23,7 +23,7 @@ export class AssociatePageComponent implements OnInit{
   }
   cells:number = 1;
   jwt = this.userAuthService.getJwtToken();
-  scrollbar=false;
+ 
   emp!:Employee; 
   batchmates:Employee[] = [];
   displayedColumns: string[] = ['fname', 'currentRevaPoints'];
@@ -37,22 +37,28 @@ export class AssociatePageComponent implements OnInit{
   onResize(event:UIEvent) {
     if(event.target != null){
       const x = event.target as Window; 
-      if(x.innerWidth < 1200){
-        this.scrollbar = true;
-      }else{
-        this.scrollbar = false
-      }
+      this.checkSize(x.innerWidth);
+    }
+  }
+
+  // If window is less than a certain size, change background settings
+  checkSize(x:number){
+    let z = document.getElementById("background");
+    if(x < 1200){
+      z?.classList.remove("background-view");
+      z?.classList.add("background-view2");
+    }else{
+      z?.classList.remove("background-view2");
+      z?.classList.add("background-view");
     }
   }
 
   async ngOnInit(){
-    
-    if(window.innerWidth < 1200){
-      this.scrollbar = true;
-    }
+    this.checkSize(window.innerWidth);
     // Had to use async here to wait for employee data
     await this.getLoggedInEmployee();
     
+
     this.loader.open();
 
     this.employeeService.getLoggedInEmployeeBatch(this.emp).subscribe(
