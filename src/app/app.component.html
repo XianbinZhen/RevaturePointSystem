@@ -1,5 +1,18 @@
-<div class="container">
-    <app-header></app-header>
-    <router-outlet></router-outlet>
-    <app-footer></app-footer>
+<div class="background-view">
+
+    <div class="container bg-light">
+        <app-header></app-header>
+        <router-outlet></router-outlet>
+        <app-footer></app-footer>
+    </div>
 </div>
+<style>
+    .background-view {
+    background: url("../../../assets/img/background.jpg");
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    object-fit: contain;
+    background-attachment: fixed;
+}
+</style>
