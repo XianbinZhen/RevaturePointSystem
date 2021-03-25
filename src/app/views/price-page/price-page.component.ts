@@ -42,7 +42,7 @@ export class PricePageComponent implements OnInit {
     private userAuthService: UserAuthService
   ) {}
 
-  displayedColumns: string[] = ['name', 'cost', 'description', 'action'];
+  displayedColumns: string[] = ['imgURL', 'name', 'cost', 'description', 'action'];
 
   ngOnInit(): void {
     this.getAllPrizes();
