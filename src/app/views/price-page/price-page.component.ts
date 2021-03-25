@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
@@ -6,44 +13,42 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Employee } from 'src/app/shared/models/employee';
 import { Prize } from 'src/app/shared/models/prize';
 import { EmployeeService } from 'src/app/shared/services/employee.service';
-import { PriceService} from 'src/app/shared/services/price.service'
+import { PriceService } from 'src/app/shared/services/price.service';
+import { TrainerService } from 'src/app/shared/services/trainer.service';
+import { UserAuthService } from 'src/app/shared/services/user-auth.service';
 import { AppLoaderService } from 'src/app/shared/shared-component/app-loader/app-loader.service';
 
 @Component({
   selector: 'app-price-page',
   templateUrl: './price-page.component.html',
-  styleUrls: ['./price-page.component.scss']
+  styleUrls: ['./price-page.component.scss'],
 })
 export class PricePageComponent implements OnInit {
-
   @Output() actionEvent = new EventEmitter();
-  @Input() actionType: string = "";
+  @Input() actionType: string = '';
   @Input() changeValue = false;
   showAction = false;
-
 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   data!: MatTableDataSource<Prize>;
 
-  constructor(private priceService:PriceService,
+  constructor(
+    private priceService: PriceService,
     private loader: AppLoaderService,
-    private snackbar: MatSnackBar, 
-    private employeeService:EmployeeService) { }
+    private snackbar: MatSnackBar,
+    private employeeService: EmployeeService,
+    private trainerService: TrainerService,
+    private userAuthService: UserAuthService
+  ) {}
 
-
-  displayedColumns: string[] = [
-    'name',
-    'cost',
-    'description',
-    'action',
-  ];
+  displayedColumns: string[] = ['name', 'cost', 'description', 'action'];
 
   ngOnInit(): void {
-    this.getAllPrizes()
+    this.getAllPrizes();
   }
 
-  getAllPrizes(){
+  getAllPrizes() {
     this.loader.open();
     this.priceService.getAllPrice().subscribe(
       (res) => {
@@ -62,10 +67,21 @@ export class PricePageComponent implements OnInit {
     );
   }
 
-  updatePrizes(element: Prize){
-      
-      let prize = element;
-      this.employeeService.updateAssociateById(prize)
-  }
+  // updatePrizes(element: Prize) {
+  //   let prize = element;
+  //   this.employeeService.updateAssociateById(prize);
+  // }
 
+  updatePrizes(prize: Prize) {
+    this.trainerService
+      .getEmployeeById(this.userAuthService.getUser().employeeId!)
+      .subscribe((res) => {
+        res.prizes.push(prize);
+        this.trainerService.updateEmployee(res).subscribe( res => {
+          console.log(res);
+          
+        })
+
+      });
+  }
 }

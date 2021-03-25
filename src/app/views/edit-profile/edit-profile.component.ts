@@ -143,7 +143,7 @@ export class EditProfileComponent implements OnInit {
         // else if (user.role == "associate") {
         //   this.router.navigate(["associate"]);
         // };
-        
+        location.reload();
       }, error => {
         console.log(error);
         this.snackbar.open(error?.error?.error, "error", {
