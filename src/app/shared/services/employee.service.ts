@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Employee } from '../models/employee';
+import { Prize } from '../models/prize';
 import { UserAuthService } from './user-auth.service';
 
 @Injectable({
@@ -42,8 +43,17 @@ export class EmployeeService {
     return this.http.get<Employee[]>(`${this.URL}/batch/${emp.batchId}`, this.options);
   }
 
-  updateEmployeeById(): Observable<Employee> {
-      
+  getAllAssociatesByBatch(id:Number): Observable<Employee[]> {
+    return this.http.get<Employee[]>(`${this.URL}/batch/` + id, this.options);
   }
 
+  updateAssociateById(prize: Prize): void{
+
+    const tempEmployee = this.getLoggedInEmployee().subscribe((result) =>{
+      let tempEmployee = result;
+      tempEmployee.prizes.push(prize)
+      this.http.put<Employee>(`${this.URL}/employee/${tempEmployee.employeeId}`, tempEmployee, this.options);
+    });
+
+  }
 }

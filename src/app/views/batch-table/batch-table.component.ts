@@ -1,32 +1,26 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table'; 
 import { Employee } from 'src/app/shared/models/employee';
 import { AssociateService } from 'src/app/shared/services/associate.service';
 import { EmployeeService } from 'src/app/shared/services/employee.service';
+import { SelectBatchIdService } from 'src/app/shared/services/select-batch-id.service';
 import { AppLoaderService } from 'src/app/shared/shared-component/app-loader/app-loader.service';
 
 @Component({
-  selector: 'app-leaderboard-page',
-  templateUrl: './leaderboard-page.component.html',
-  styleUrls: ['./leaderboard-page.component.scss'],
+  selector: 'app-batch-table',
+  templateUrl: './batch-table.component.html',
+  styleUrls: ['./batch-table.component.scss']
 })
-export class LeaderboardPageComponent implements OnInit, OnChanges {
-
-  @Output() actionEvent = new EventEmitter();
-  @Input() actionType: string = "";
-  @Input() changeValue = false;
-  showAction = false;
-
-  
+export class BatchTableComponent implements OnInit {
+  batchId:string = "0";
   displayedColumns: string[] = [
     'allTimeRevaPoints',
     'currentRevaPoints',
     'fname',
     'lname',
-    'action',
   ];
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -36,29 +30,17 @@ export class LeaderboardPageComponent implements OnInit, OnChanges {
     private associateService: AssociateService,
     private loader: AppLoaderService,
     private snackbar: MatSnackBar,
-    private employeeService: EmployeeService
+    private employeeService: EmployeeService,
+    private batchServie: SelectBatchIdService,
   ) {}
 
   ngOnInit(): void {
-    this.loadDate();
+    this.loadBatch();
   }
 
-  ngOnChanges(changes: { [key: string]: SimpleChange }): void {
-    if (changes['changeValue'] &&
-          changes['changeValue'].previousValue !== undefined &&
-          !changes['changeValue'].isFirstChange() ) {
-            this.loadDate();
-          }
-    }
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
-  loadDate() {
+  loadBatch(){
     this.loader.open();
-    this.employeeService.getAllAssociates().subscribe(
+    this.employeeService.getAllAssociatesByBatch(Number.parseInt(this.batchId)).subscribe(
       (res) => {
         this.dataSource = new MatTableDataSource<Employee>(res);
         this.dataSource.sort = this.sort;
@@ -66,13 +48,18 @@ export class LeaderboardPageComponent implements OnInit, OnChanges {
         this.loader.close();
       },
       (error) => {
-        console.log('error', error);
+        console.log("error", error);
         this.snackbar.open(error?.error?.error, 'error', {
           duration: 3000,
         });
         this.loader.close();
       }
     );
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 }

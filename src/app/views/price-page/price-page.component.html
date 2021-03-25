@@ -1,25 +1,31 @@
-<br>
-<h1 style="text-align: center; font-size: 50px"><b>Awesome Prizes</b></h1>
-<style>
-.grid-container {
-  display: grid;
-  grid-template-columns: auto auto auto auto;
-  grid-gap: 20px;
-  background-color: #2196F3;
-  padding: 50px;
-}
 
-.grid-container > div {
-  background-color: rgba(255, 255, 255, 0.8);
-  text-align: center;
-  padding: 200px 20px;
-  font-size: 50px;
-}
-</style>
+<div>
 
-<div class="grid-container" *ngFor="let prize of data">
-  <div>{{prize.name}}</div>
-  <div>{{prize.cost}}</div>
-  <div>{{prize.description}}</div>  
-  <div class="btn" role="button" style="background-color:green" (click)="getAllPrizes()">Redeem</div>
+    <table mat-table [dataSource]="data" matSort matSortActive="cost" matSortDirection="desc"
+        class="mat-elevation-z8">
+
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Prize </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="cost">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Cost </th>
+            <td mat-cell *matCellDef="let element"> {{element.cost}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+            <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+            <td mat-cell *matCellDef="let element"> <button mat-button color='accent' (click)="updatePrizes(element)">Redeem</button> </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
