@@ -73,15 +73,35 @@ export class PricePageComponent implements OnInit {
   // }
 
   updatePrizes(prize: Prize) {
+    console.log(prize);
+
+    this.loader.open();
     this.trainerService
       .getEmployeeById(this.userAuthService.getUser().employeeId!)
       .subscribe((res) => {
-        res.prizes.push(prize);
-        this.trainerService.updateEmployee(res).subscribe( res => {
-          console.log(res);
-          
-        })
-
+        if (res.currentRevaPoints < prize.cost) {
+          this.snackbar.open('Not enough point to redeem', 'close', {
+            duration: 3000,
+          });
+          this.loader.close();
+        } else {
+          res.currentRevaPoints -= prize.cost;
+          res.prizes.push(prize);
+          this.trainerService.updateEmployee(res).subscribe(
+            (res) => {
+              this.snackbar.open('You redeemed a prize', 'OK', {
+                duration: 3000,
+              });
+              this.loader.close();
+            },
+            (error) => {
+              this.snackbar.open('You already have this prize', 'close', {
+                duration: 3000,
+              });
+              this.loader.close();
+            }
+          );
+        }
       });
   }
 }
