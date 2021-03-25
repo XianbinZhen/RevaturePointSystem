@@ -3,6 +3,5 @@ export class Prize {
     name!: string;
     cost!: number;
     description!: string;
-    employeeId!: number;
     imgURL!: string;
 }

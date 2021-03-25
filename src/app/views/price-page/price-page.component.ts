@@ -100,7 +100,7 @@ export class PricePageComponent implements OnInit {
           });
           this.loader.close();
         } else {
-          res.currentRevaPoints -= prize.cost;
+          // res.currentRevaPoints -= prize.cost;
           res.prizes.push(prize);
           this.trainerService.updateEmployee(res).subscribe(
             (res) => {
@@ -111,7 +111,7 @@ export class PricePageComponent implements OnInit {
               this.loadMyPrize();
             },
             (error) => {
-              this.snackbar.open('You already have this prize', 'close', {
+              this.snackbar.open(error?.error?.message, 'error', {
                 duration: 3000,
               });
               this.loader.close();
