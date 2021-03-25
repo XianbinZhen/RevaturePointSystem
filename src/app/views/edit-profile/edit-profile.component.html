@@ -1,0 +1,49 @@
+<div class="d-sm-flex gap-3 mt-3">
+    <div class="w-100">
+        <img [src]=" uploadIMG || imgThumbnail" alt="" class="img-thumbnail m-2 rounded-pill"
+            onerror="this.src='assets/img/user_default.png'">
+        <p class="d-inline">username: {{ username }}</p>
+
+    </div>
+    <div class="w-100">
+        <mat-label class="p-1">Change my photo</mat-label>
+        <input type="file" accept="image/png, image/jpeg" class="form-control mt-2" (change)="uploadFile($event)">
+        <mat-progress-bar [value]="progressBarValue" max="100" class="w-100"></mat-progress-bar>
+    </div>
+</div>
+
+<form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <div class="d-sm-flex gap-3 mt-3">
+        <mat-form-field class="w-100">
+            <mat-label>
+                <mat-icon class="mx-1">face</mat-icon>First name
+            </mat-label>
+            <input matInput formControlName="firstName" type="text" name="firstName" />
+        </mat-form-field>
+        <mat-form-field class="w-100">
+            <mat-label>
+                <mat-icon class="mx-1">face</mat-icon>Last name
+            </mat-label>
+            <input matInput formControlName="lastName" type="text" name="lastName" />
+        </mat-form-field>
+    </div>
+
+    <div class="d-sm-flex gap-3 mt-3">
+        <mat-form-field class="w-100">
+            <mat-label>
+                <mat-icon class="mx-1">lock</mat-icon>Password
+            </mat-label>
+            <input matInput formControlName="password" type="password" name="password" />
+        </mat-form-field>
+        <mat-form-field class="w-100">
+            <mat-label>
+                <mat-icon class="mx-1">lock</mat-icon>Confirm Password
+            </mat-label>
+            <input matInput formControlName="confirmPassword" type="password" name="confirmPassword" />
+        </mat-form-field>
+    </div>
+
+    <div class="d-flex gap-2 align-items-center mt-3">
+        <button mat-flat-button color="primary" class="me-3">Submit</button>
+    </div>
+</form>

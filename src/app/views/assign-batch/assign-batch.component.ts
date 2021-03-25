@@ -1,21 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
 import { Employee } from 'src/app/shared/models/employee';
-import { Prize } from 'src/app/shared/models/prize';
 import { TrainerService } from 'src/app/shared/services/trainer.service';
 import { AppLoaderService } from 'src/app/shared/shared-component/app-loader/app-loader.service';
 
 @Component({
-  selector: 'app-give-revature-point',
-  templateUrl: './give-revature-point.component.html',
-  styleUrls: ['./give-revature-point.component.scss'],
+  selector: 'app-assign-batch',
+  templateUrl: './assign-batch.component.html',
+  styleUrls: ['./assign-batch.component.scss'],
 })
-export class GiveRevaturePointComponent implements OnInit {
-  amount: number = 100;
+export class AssignBatchComponent implements OnInit {
+  batchId: number = 1;
   changeValue = false;
 
-  actionType: string = 'Give away';
+  actionType: string = 'Assign';
+
   constructor(
     private trainerService: TrainerService,
     private loader: AppLoaderService,
@@ -29,12 +28,11 @@ export class GiveRevaturePointComponent implements OnInit {
     this.trainerService.getEmployeeById(e).subscribe(
       (res) => {
         let employee: Employee = res;
-        employee.allTimeRevaPoints += this.amount;
-        employee.currentRevaPoints += this.amount;
+        employee.batchId = this.batchId;
         this.trainerService.updateEmployee(employee).subscribe(
           (res) => {
             this.changeValue = !this.changeValue;
-            this.snackbar.open('Employee updated', 'OK', {
+            this.snackbar.open("Employee updated", 'OK', {
               duration: 3000,
             });
             this.loader.close();

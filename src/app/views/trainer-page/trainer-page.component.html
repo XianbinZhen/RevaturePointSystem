@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand navbar-light bg-light d-flex flex-row flex-wrap">
     <div class="flex flex-wrap text-center">
-        <img [src]="imgThumbnail || defaultThumbnail" alt="" class="img-thumbnail m-2 rounded-pill">
-        <h2 class="navbar-brand d-inline">Welcome  {{role | uppercase}} : {{firstName}} {{lastName}}</h2>
+        <img [src]="imgThumbnail || defaultThumbnail" alt="" class="img-thumbnail m-2 rounded-pill"  onerror="this.src='assets/img/user_default.png'">
+        <h2 class="navbar-brand d-inline">Welcome {{role | uppercase}} : {{firstName}} {{lastName}}</h2>
     </div>
     <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
@@ -13,18 +13,33 @@
                 <li class="nav-item">
                     <a [routerLink]="[ 'leaderboard' ]" routerLinkActive="active" class="nav-link">Leaderboard</a>
                 </li>
+
                 <li class="nav-item">
                     <a [routerLink]="[ 'batch' ]" routerLinkActive="active" class="nav-link">View Batch</a>
                 </li>
+
                 <li class="nav-item">
                     <a [routerLink]="[ 'addPrize' ]" routerLinkActive="active" class="nav-link">Add prize</a>
                 </li>
+
                 <li class="nav-item">
                     <a [routerLink]="[ 'givePoint' ]" routerLinkActive="active" class="nav-link">Give away Revature
                         Point</a>
+                </li>
+
+                <li class="nav-item">
+                    <a [routerLink]="[ 'assignBatch' ]" routerLinkActive="active" class="nav-link">Assign to batch</a>
+                </li>
+
+                <li class="nav-item">
+                    <a [routerLink]="[ 'profile' ]" routerLinkActive="active" class="nav-link">Edit my profile</a>
+                </li>
+
                 <li class="nav-item">
                     <button mat-button color="accent" (click)="logout()" class="flex-end">logout</button>
                 </li>
+
+
             </ul>
         </div>
     </div>
