@@ -20,6 +20,7 @@ import { GiveRevaturePointComponent } from './give-revature-point/give-revature-
 import { AssignBatchComponent } from './assign-batch/assign-batch.component';
 import { AssociateHomeComponent } from './associate-home/associate-home.component';
 import { BatchLeaderBoardComponent } from './batch-leader-board/batch-leader-board.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 const components = [
   HomePageComponent,
@@ -35,7 +36,8 @@ const components = [
   GiveRevaturePointComponent,
   AssignBatchComponent,
   AssociateHomeComponent,
-  BatchLeaderBoardComponent
+  BatchLeaderBoardComponent,
+  EditProfileComponent
 ];
 
 @NgModule({

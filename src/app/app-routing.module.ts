@@ -16,6 +16,7 @@ import { TrainerPageComponent } from './views/trainer-page/trainer-page.componen
 import { AssignBatchComponent } from './views/assign-batch/assign-batch.component';
 import { AssociateHomeComponent } from './views/associate-home/associate-home.component';
 import { BatchLeaderBoardComponent } from './views/batch-leader-board/batch-leader-board.component';
+import { EditProfileComponent } from './views/edit-profile/edit-profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -32,7 +33,8 @@ const routes: Routes = [
       { path: 'leaderboard', component: LeaderboardPageComponent },
       { path: 'batch', component: BatchTableComponent },
       { path: 'givePoint', component: GiveRevaturePointComponent },
-      { path: 'assignBatch', component: AssignBatchComponent }
+      { path: 'assignBatch', component: AssignBatchComponent },
+      { path: 'profile', component: EditProfileComponent }
     ],
   },
   {
@@ -45,6 +47,8 @@ const routes: Routes = [
       { path: 'batchLeaderboard', component: BatchLeaderBoardComponent },
       { path: 'leaderboard', component: LeaderboardPageComponent },
       { path: 'prize', component: PricePageComponent },
+      { path: 'profile', component: EditProfileComponent }
+
     ]
   },
   { path: '**', component: NotFoundPageComponent },

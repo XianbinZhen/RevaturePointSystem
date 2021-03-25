@@ -6,11 +6,12 @@
         <div>
             <form [formGroup]="loginForm"  (ngSubmit)="onSubmit()" class="d-flex flex-column gap-2">
                 <mat-form-field >
-                    <mat-label>username</mat-label>
-                    <input matInput formControlName="username"  type="text" name="username" placeholder="username" />
+                    
+                    <mat-label><mat-icon class="mx-1">account_circle</mat-icon>username</mat-label>
+                    <input matInput formControlName="username"  type="text" name="username" placeholder="username" >
                 </mat-form-field>
                 <mat-form-field >
-                    <mat-label>Password</mat-label>
+                    <mat-label><mat-icon class="mx-1">lock</mat-icon>Password</mat-label>
                     <input matInput formControlName="password" type="password" name="password"  />
                 </mat-form-field>
                 <div class="d-flex gap-2 align-items-center">
