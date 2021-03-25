@@ -1,9 +1,80 @@
-<nav class="navbar navbar-expand navbar-light bg-light d-flex flex-row flex-wrap">
-    <div class="flex flex-wrap text-center">
-        <img [src]="imgThumbnail || defaultThumbnail" alt="" class="img-thumbnail m-2 rounded-pill"
-            onerror="this.src='assets/img/user_default.png'">
-        <h2 class="navbar-brand d-inline">Welcome {{role | uppercase}} : {{firstName}} {{lastName}}</h2>
+
+<button mat-raised-button color="accent" (click)="logout()" class="fixedButton">
+    logout
+</button>
+<header class="px-3 py-2 bg-dark text-white">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+                <div class="flex flex-wrap text-center">
+                    <img [src]="imgThumbnail || defaultThumbnail" alt="" class="img-thumbnail m-2 rounded-pill"
+                        onerror="this.src='assets/img/user_default.png'">
+                    <h4 class="navbar-brand d-inline">Welcome {{role | uppercase}} : {{firstName}} {{lastName}}</h4>
+                </div>
+            </a>
+
+            <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+                <li>
+                    <a [routerLink]="[ 'leaderboard' ]" routerLinkActive="text-white" class="nav-link text-secondary ">
+                        <mat-icon class="bi d-block mx-auto mb-1" width="24" height="24">
+                            leaderboard
+                        </mat-icon>
+                        Leaderboard
+                    </a>
+                </li>
+
+                <li>
+                    <a [routerLink]="[ 'batch' ]" routerLinkActive="text-white" class="nav-link text-secondary">
+                        <mat-icon class="bi d-block mx-auto mb-1" width="24" height="24">
+                            supervisor_account
+                        </mat-icon>
+                        View Batch
+                    </a>
+                </li>
+
+                <li>
+                    <a [routerLink]="[ 'givePoint' ]" routerLinkActive="text-white" class="nav-link text-secondary">
+                        <mat-icon class="bi d-block mx-auto mb-1" width="24" height="24">
+                            auto_awesome
+                        </mat-icon>
+                        Give Points
+                    </a>
+                </li>
+
+                <li>
+                    <a [routerLink]="[ 'assignBatch' ]" routerLinkActive="text-white" class="nav-link text-secondary">
+                        <mat-icon class="bi d-block mx-auto mb-1" width="24" height="24">
+                            assignment_return
+                        </mat-icon>
+                        Assign Batch
+                    </a>
+                </li>
+
+                <li>
+                    <a [routerLink]="[ 'profile' ]" routerLinkActive="text-white" class="nav-link text-secondary">
+                        <mat-icon class="bi d-block mx-auto mb-1" width="24" height="24">
+                            manage_accounts
+                        </mat-icon>
+                        Edit Profile
+                    </a>
+                </li>
+
+                <li>
+                    <a [routerLink]="[ 'addPrize' ]" routerLinkActive="text-white" class="nav-link text-secondary">
+                        <mat-icon class="bi d-block mx-auto mb-1" width="24" height="24">
+                            add_reaction
+                        </mat-icon>
+                        Add Prize
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
+</header>
+
+
+<!-- <nav class="navbar navbar-expand navbar-light bg-light d-flex flex-row flex-wrap my-3">
+
     <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,8 +114,8 @@
             </ul>
         </div>
     </div>
-</nav>
-<div class="background-view">
+</nav> -->
 
-    <router-outlet ></router-outlet>
+<div class="background-view">
+    <router-outlet></router-outlet>
 </div>
