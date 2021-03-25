@@ -40,14 +40,14 @@ export class AssociatePageComponent implements OnInit{
   onResize(event:UIEvent) {
     if(event.target != null){
       const x = event.target as Window; 
-      this.checkSize(x.innerWidth);
+      this.checkSize(x.innerWidth, x.innerHeight);
     }
   }
 
   // If window is less than a certain size, change background settings
-  checkSize(x:number){
+  checkSize(x:number, y:number){
     let z = document.getElementById("background");
-    if(x < 1200){
+    if(x < 1200 || y < 600){
       z?.classList.remove("background-view");
       z?.classList.add("background-view2");
     }else{
@@ -57,7 +57,7 @@ export class AssociatePageComponent implements OnInit{
   }
 
   async ngOnInit(){
-    this.checkSize(window.innerWidth);
+    this.checkSize(window.innerWidth, window.innerHeight);
     // Had to use async here to wait for employee data
     await this.getLoggedInEmployee();
   

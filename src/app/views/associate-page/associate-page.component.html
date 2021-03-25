@@ -44,9 +44,10 @@
                     <div class="carousel-cell">
                         <mat-card-header>
                             <mat-card-title>{{p.name}}</mat-card-title>
-                            <mat-card-subtitle>{{p.description}} Cost: {{p.cost}} points</mat-card-subtitle>
+                            <mat-card-subtitle>{{p.description}} </mat-card-subtitle>
+                            <p>Cost: {{p.cost}}</p>
                         </mat-card-header>
-                        <img mat-card-image src="{{p.imgURL}}" alt="">
+                        <img mat-card-image [src]="p.imgURL" alt="" onerror="this.src='assets/img/user_default.png'">
                     </div>
                 </ng-container>
             </carousel>
