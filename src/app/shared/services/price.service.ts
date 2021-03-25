@@ -19,9 +19,9 @@ export class PriceService {
     } 
   }
 
-  getAllPrice(): Observable<Prize> {
+  getAllPrice(): Observable<Prize[]> {
 
-    const result = this.http.get<Prize>(`${this.URL}/prize`, this.options);
+    const result = this.http.get<Prize[]>(`${this.URL}/prize`, this.options);
     return result;
   }
 }

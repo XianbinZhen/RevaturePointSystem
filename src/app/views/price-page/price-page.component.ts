@@ -1,5 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { Employee } from 'src/app/shared/models/employee';
+import { Prize } from 'src/app/shared/models/prize';
+import { EmployeeService } from 'src/app/shared/services/employee.service';
 import { PriceService} from 'src/app/shared/services/price.service'
+import { AppLoaderService } from 'src/app/shared/shared-component/app-loader/app-loader.service';
 
 @Component({
   selector: 'app-price-page',
@@ -8,18 +16,56 @@ import { PriceService} from 'src/app/shared/services/price.service'
 })
 export class PricePageComponent implements OnInit {
 
-  data:any
-  constructor(private priceService:PriceService) { }
+  @Output() actionEvent = new EventEmitter();
+  @Input() actionType: string = "";
+  @Input() changeValue = false;
+  showAction = false;
+
+
+  @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  data!: MatTableDataSource<Prize>;
+
+  constructor(private priceService:PriceService,
+    private loader: AppLoaderService,
+    private snackbar: MatSnackBar, 
+    private employeeService:EmployeeService) { }
+
+
+  displayedColumns: string[] = [
+    'name',
+    'cost',
+    'description',
+    'action',
+  ];
 
   ngOnInit(): void {
     this.getAllPrizes()
   }
 
   getAllPrizes(){
-    this.priceService.getAllPrice().subscribe((result)=>{
-      this.data = result;
-      console.log(this.data)
-    })
+    this.loader.open();
+    this.priceService.getAllPrice().subscribe(
+      (res) => {
+        this.data = new MatTableDataSource<Prize>(res);
+        this.data.sort = this.sort;
+        this.data.paginator = this.paginator;
+        this.loader.close();
+      },
+      (error) => {
+        console.log('error', error);
+        this.snackbar.open(error?.error?.error, 'error', {
+          duration: 3000,
+        });
+        this.loader.close();
+      }
+    );
+  }
+
+  updatePrizes(element: Prize){
+      
+      let prize = element;
+      this.employeeService.updateAssociateById(prize)
   }
 
 }
