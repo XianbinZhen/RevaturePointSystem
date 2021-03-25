@@ -8,7 +8,7 @@
             </mat-card-header>
             <h3>Current RevaPoints:</h3>
             <h1 class="points">{{emp.currentRevaPoints}}</h1>
-            <h3>AllTime RevaPoints:</h3>
+            <h3>All Time RevaPoints:</h3>
             <h1 class="points">{{emp.allTimeRevaPoints}}</h1>
         </mat-card>
         <mat-card class="card-panel table-card">
@@ -33,7 +33,8 @@
                   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                 </table>
                 <mat-paginator #paginator [pageSize]="5" showFirstLastButtons></mat-paginator>
-              
+                <mat-card-footer><a [routerLink]="[ '/associate/batchLeaderboard' ]" routerLinkActive="active" class="nav-link">Batch Leaderboard</a></mat-card-footer>
+                
         </mat-card>
         <mat-card class="card-panel">
             <h1>My Prizes</h1>
