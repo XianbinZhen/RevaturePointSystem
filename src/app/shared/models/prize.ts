@@ -1,5 +1,5 @@
 export class Prize {
-    priceId!: number;
+    prizeId!: number;
     name!: string;
     cost!: number;
     description!: string;

@@ -96,7 +96,7 @@ export class AddPrizePageComponent implements OnInit {
   // http request to add prize to DB
   addPrizeHttp(): void {
     const prize = {
-      priceId: 1,
+      prizeId: 1,
       name: this.addPrizeForm.value.prizeName,
       cost: this.addPrizeForm.value.prizeCost,
       description:

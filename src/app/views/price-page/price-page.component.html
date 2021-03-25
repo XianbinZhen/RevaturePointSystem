@@ -1,6 +1,6 @@
 
 <div>
-
+<h1>My current points: {{ points }}</h1>
     <table mat-table [dataSource]="data" matSort matSortActive="cost" matSortDirection="desc"
         class="mat-elevation-z8">
 
@@ -26,7 +26,7 @@
 
         <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
-            <td mat-cell *matCellDef="let element"> <button mat-button color='accent' (click)="updatePrizes(element)">Redeem</button> </td>
+            <td mat-cell *matCellDef="let element"> <button mat-button color='accent' (click)="updatePrizes(element)" disabled = "{{element.redeemable}}">{{ actionType }}</button> </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>

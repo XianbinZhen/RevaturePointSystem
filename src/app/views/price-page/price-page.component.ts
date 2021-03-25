@@ -1,18 +1,9 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Employee } from 'src/app/shared/models/employee';
 import { Prize } from 'src/app/shared/models/prize';
-import { EmployeeService } from 'src/app/shared/services/employee.service';
 import { PriceService } from 'src/app/shared/services/price.service';
 import { TrainerService } from 'src/app/shared/services/trainer.service';
 import { UserAuthService } from 'src/app/shared/services/user-auth.service';
@@ -24,41 +15,62 @@ import { AppLoaderService } from 'src/app/shared/shared-component/app-loader/app
   styleUrls: ['./price-page.component.scss'],
 })
 export class PricePageComponent implements OnInit {
-  @Output() actionEvent = new EventEmitter();
-  @Input() actionType: string = '';
-  @Input() changeValue = false;
-  showAction = false;
+  actionType: string = 'Redeem';
 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  data!: MatTableDataSource<Prize>;
+  data!: MatTableDataSource<any>;
+  myPrize: Prize[] = [];
+  points: number = 0;
 
   constructor(
     private priceService: PriceService,
     private loader: AppLoaderService,
     private snackbar: MatSnackBar,
-    private employeeService: EmployeeService,
     private trainerService: TrainerService,
     private userAuthService: UserAuthService
   ) {}
 
-  displayedColumns: string[] = ['imgURL', 'name', 'cost', 'description', 'action'];
+  displayedColumns: string[] = [
+    'imgURL',
+    'name',
+    'cost',
+    'description',
+    'action',
+  ];
 
   ngOnInit(): void {
-    this.getAllPrizes();
+    this.loadMyPrize();
+  }
+
+  loadMyPrize() {
+    this.trainerService
+      .getEmployeeById(this.userAuthService.getUser().employeeId!)
+      .subscribe(
+        (res) => {
+          this.myPrize = res.prizes;
+          this.points = res.currentRevaPoints;
+          this.getAllPrizes();
+        },
+        (error) => {
+          this.snackbar.open(error?.error?.error, 'error', {
+            duration: 3000,
+          });
+        }
+      );
   }
 
   getAllPrizes() {
     this.loader.open();
     this.priceService.getAllPrice().subscribe(
       (res) => {
+        res = res.map((e) => ({ ...e, redeemable: this.hasPrize(e) }));
         this.data = new MatTableDataSource<Prize>(res);
         this.data.sort = this.sort;
         this.data.paginator = this.paginator;
         this.loader.close();
       },
       (error) => {
-        console.log('error', error);
         this.snackbar.open(error?.error?.error, 'error', {
           duration: 3000,
         });
@@ -67,14 +79,17 @@ export class PricePageComponent implements OnInit {
     );
   }
 
+  hasPrize(prize: Prize): boolean {
+    let i = this.myPrize.findIndex((e) => e.prizeId === prize.prizeId);
+    // console.log(i === -1);
+    return !(i === -1);
+  }
   // updatePrizes(element: Prize) {
   //   let prize = element;
   //   this.employeeService.updateAssociateById(prize);
   // }
 
   updatePrizes(prize: Prize) {
-    console.log(prize);
-
     this.loader.open();
     this.trainerService
       .getEmployeeById(this.userAuthService.getUser().employeeId!)
@@ -93,6 +108,7 @@ export class PricePageComponent implements OnInit {
                 duration: 3000,
               });
               this.loader.close();
+              this.loadMyPrize();
             },
             (error) => {
               this.snackbar.open('You already have this prize', 'close', {
