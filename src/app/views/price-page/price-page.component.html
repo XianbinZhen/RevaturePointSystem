@@ -1,6 +1,6 @@
 
-<div>
-<h1 *ngIf="showMyPoints">My current points: {{ points }}</h1>
+<div class="mt-3">
+<h1 *ngIf="showMyPoints" class="text-center">My current points: {{ points }}</h1>
     <table mat-table [dataSource]="data" matSort matSortActive="cost" matSortDirection="desc"
         class="mat-elevation-z8">
 
