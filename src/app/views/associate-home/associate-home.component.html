@@ -1,26 +1,62 @@
 
-<div>
-    <ul class="nav nav-tabs">
-        <li class="nav-item">
-            <a [routerLink]="[ 'dashboard' ]" routerLinkActive="active" class="nav-link">Dashboard</a>
-        </li>
-        <li class="nav-item">
-            <a [routerLink]="[ 'leaderboard' ]" routerLinkActive="active" class="nav-link">Leaderboard</a>
-        </li>
-        <li class="nav-item">
-            <a [routerLink]="[ 'prize' ]" routerLinkActive="active" class="nav-link">Redeem prize</a>
-        </li>
-        <li class="nav-item">
-            <a [routerLink]="[ 'batchLeaderboard' ]" routerLinkActive="active" class="nav-link">Leaderboard in my Batch</a>
-        </li>
-        
-        <li class="nav-item">
-            <a [routerLink]="[ 'profile' ]" routerLinkActive="active" class="nav-link">Edit my profile</a>
-        </li>
-            
-        <li class="nav-item">
-            <button mat-button color="accent" (click)="logout()" class="flex-end">logout</button>
-        </li>
-    </ul>
-</div>
+<button mat-raised-button color="accent" (click)="logout()" class="fixedTop">
+    logout
+</button>
+<header class="px-3 py-2 bg-dark text-white">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">  
+            </a>
+
+            <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+
+                <li>
+                    <a [routerLink]="[ 'dashboard' ]" routerLinkActive="text-white" class="nav-link text-secondary ">
+                        <mat-icon class="bi d-block mx-auto mb-1" width="24" height="24">
+                            dashboard
+                        </mat-icon>
+                        Dashboard
+                    </a>
+                </li>
+
+                <li>
+                    <a [routerLink]="[ 'leaderboard' ]" routerLinkActive="text-white" class="nav-link text-secondary ">
+                        <mat-icon class="bi d-block mx-auto mb-1" width="24" height="24">
+                            leaderboard
+                        </mat-icon>
+                        Leaderboard
+                    </a>
+                </li>
+
+                <li>
+                    <a [routerLink]="[ 'prize' ]" routerLinkActive="text-white" class="nav-link text-secondary">
+                        <mat-icon class="bi d-block mx-auto mb-1" width="24" height="24">
+                            emoji_events
+                        </mat-icon>
+                        Redeem Prize
+                    </a>
+                </li>
+
+                <li>
+                    <a [routerLink]="[ 'batchLeaderboard' ]" routerLinkActive="text-white" class="nav-link text-secondary">
+                        <mat-icon class="bi d-block mx-auto mb-1" width="24" height="24">
+                            military_tech
+                        </mat-icon>
+                        Batch Leaderboard
+                    </a>
+                </li>
+
+                <li>
+                    <a [routerLink]="[ 'profile' ]" routerLinkActive="text-white" class="nav-link text-secondary">
+                        <mat-icon class="bi d-block mx-auto mb-1" width="24" height="24">
+                            manage_accounts
+                        </mat-icon>
+                        Edit Profile
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</header>
 <router-outlet></router-outlet>
