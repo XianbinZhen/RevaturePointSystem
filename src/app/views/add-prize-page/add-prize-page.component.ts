@@ -24,6 +24,7 @@ export class AddPrizePageComponent implements OnInit {
   progressBarValue: number = 0;
   file?: File;
   downloadURL: string = '';
+  changeValue = false;
 
   constructor(
     private trainerService: TrainerService,
@@ -37,7 +38,11 @@ export class AddPrizePageComponent implements OnInit {
     const prizeName = new FormControl('', Validators.required);
     const prizeCost = new FormControl('', Validators.required);
     const description = new FormControl('', Validators.required);
-    this.addPrizeForm = this.formBuilder.group({ prizeName, prizeCost, description });
+    this.addPrizeForm = this.formBuilder.group({
+      prizeName,
+      prizeCost,
+      description,
+    });
   }
 
   addPrize(): void {
@@ -68,6 +73,7 @@ export class AddPrizePageComponent implements OnInit {
                   this.snackbar.open(error?.error?.error, 'error', {
                     duration: 3000,
                   });
+                  this.loader.close();
                 }
               );
             })
@@ -99,10 +105,9 @@ export class AddPrizePageComponent implements OnInit {
       prizeId: 1,
       name: this.addPrizeForm.value.prizeName,
       cost: this.addPrizeForm.value.prizeCost,
-      description:
-        this.addPrizeForm.value.description,
+      description: this.addPrizeForm.value.description,
       employeeId: 1,
-      imgURL: this.downloadURL
+      imgURL: this.downloadURL,
     };
     this.trainerService.addPrize(prize).subscribe(
       (res) => {
@@ -110,6 +115,7 @@ export class AddPrizePageComponent implements OnInit {
         this.snackbar.open('Prize created', 'OK', {
           duration: 3000,
         });
+        this.changeValue = !this.changeValue;
         this.loader.close();
       },
       (error) => {

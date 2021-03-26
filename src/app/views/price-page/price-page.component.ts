@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, SimpleChange, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
@@ -15,7 +15,9 @@ import { AppLoaderService } from 'src/app/shared/shared-component/app-loader/app
   styleUrls: ['./price-page.component.scss'],
 })
 export class PricePageComponent implements OnInit {
-  actionType: string = 'Redeem';
+  @Input() actionType: string = 'Redeem';
+  @Input() changeValue = false;
+  @Input() showMyPoints = true;
 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -41,6 +43,15 @@ export class PricePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadMyPrize();
+  }
+  ngOnChanges(changes: { [key: string]: SimpleChange }): void {
+    if (
+      changes['changeValue'] &&
+      changes['changeValue'].previousValue !== undefined &&
+      !changes['changeValue'].isFirstChange()
+    ) {
+      this.loadMyPrize();
+    }
   }
 
   loadMyPrize() {
