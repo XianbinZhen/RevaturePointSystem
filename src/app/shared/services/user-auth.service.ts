@@ -74,4 +74,9 @@ export class UserAuthService {
     return user.role == "trainer";
   }
 
+  isAssociateAuthenticated() {
+    let user: User =JSON.parse(this.localStorage.getItem(this.APP_USER)!);
+    return user.role == "associate";
+  }
+
 }

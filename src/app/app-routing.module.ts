@@ -17,6 +17,7 @@ import { AssignBatchComponent } from './views/assign-batch/assign-batch.componen
 import { AssociateHomeComponent } from './views/associate-home/associate-home.component';
 import { BatchLeaderBoardComponent } from './views/batch-leader-board/batch-leader-board.component';
 import { EditProfileComponent } from './views/edit-profile/edit-profile.component';
+import { AssociateAuthGuardService } from './shared/services/associate-auth-guard.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -40,7 +41,7 @@ const routes: Routes = [
   {
     path: 'associate',
     component: AssociateHomeComponent,
-    canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService, AssociateAuthGuardService],
     children: [
       { path: '', redirectTo: "dashboard", pathMatch: 'full' },
       { path: 'dashboard', component: AssociatePageComponent },
