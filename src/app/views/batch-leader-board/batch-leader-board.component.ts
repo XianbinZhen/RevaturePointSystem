@@ -49,7 +49,7 @@ export class BatchLeaderBoardComponent implements OnInit {
               this.loader.close();
             },
             (error) => {
-              this.snackbar.open(error?.error?.error, 'error', {
+              this.snackbar.open(error?.error?.message || error?.error?.error, 'error', {
                 duration: 3000,
               });
               this.loader.close();
@@ -57,7 +57,7 @@ export class BatchLeaderBoardComponent implements OnInit {
           );
         },
         (error) => {
-          this.snackbar.open(error?.error?.error, 'error', {
+          this.snackbar.open(error?.error?.message || error?.error?.error, 'error', {
             duration: 3000,
           });
           this.loader.close();

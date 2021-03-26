@@ -146,14 +146,14 @@ export class EditProfileComponent implements OnInit {
         location.reload();
       }, error => {
         console.log(error);
-        this.snackbar.open(error?.error?.error, "error", {
+        this.snackbar.open(error?.error?.message || error?.error?.error, "error", {
           duration: 3000
         });
         this.loader.close();
       });
     }, error => {
       console.log("error", error);
-      this.snackbar.open(error?.error?.error, "error", {
+      this.snackbar.open(error?.error?.message || error?.error?.error, "error", {
         duration: 3000
       });
       this.loader.close();

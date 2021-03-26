@@ -64,7 +64,7 @@ export class PricePageComponent implements OnInit {
           this.getAllPrizes();
         },
         (error) => {
-          this.snackbar.open(error?.error?.error, 'error', {
+          this.snackbar.open(error?.error?.message || error?.error?.error, 'error', {
             duration: 3000,
           });
         }
@@ -82,7 +82,7 @@ export class PricePageComponent implements OnInit {
         this.loader.close();
       },
       (error) => {
-        this.snackbar.open(error?.error?.error, 'error', {
+        this.snackbar.open(error?.error?.message || error?.error?.error, 'error', {
           duration: 3000,
         });
         this.loader.close();
@@ -122,7 +122,7 @@ export class PricePageComponent implements OnInit {
               this.loadMyPrize();
             },
             (error) => {
-              this.snackbar.open(error?.error?.message, 'error', {
+              this.snackbar.open(error?.error?.message || error?.error?.message, 'error', {
                 duration: 3000,
               });
               this.loader.close();

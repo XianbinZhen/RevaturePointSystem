@@ -66,7 +66,7 @@ export class LoginPageComponent implements OnInit {
         };
       }, error  => {
         console.log("Error", error);
-        this.snackbar.open(error?.error?.error, "error", {
+        this.snackbar.open(error?.error?.message || error?.error?.error, "error", {
           duration: 3000
         });
         }
