@@ -29,14 +29,7 @@ export class EmployeeService {
     return this.http.get<Employee[]>(`${this.URL}/role/associate`, this.options);
   }
   getLoggedInEmployee(): Observable<Employee>{
-    let jwt = this.userAuthService.getJwtToken();
-
-    let token = null;
-    if(jwt != null){
-      token = JSON.parse(atob(jwt.split('.')[1]));
-    }
-    
-    return this.http.get<Employee>(`${this.URL}/employee/${token.employeeId}`, this.options);
+    return this.http.get<Employee>(`${this.URL}/employee/${this.userAuthService.getUser().employeeId}`, this.options);
   }
   getLoggedInEmployeeBatch(emp:Employee): Observable<Employee[]>{
     
