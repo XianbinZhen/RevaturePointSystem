@@ -46,3 +46,9 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 <img src="https://firebasestorage.googleapis.com/v0/b/revature-points-system.appspot.com/o/rps%2F8.PNG?alt=media&token=9cc03df4-d155-4219-bb9a-fdf49255c6f7" width="800">
 <img src="https://firebasestorage.googleapis.com/v0/b/revature-points-system.appspot.com/o/rps%2F9.PNG?alt=media&token=424e08d0-b283-4349-b0c2-72f0742aa902" width="800">
 <img src="https://firebasestorage.googleapis.com/v0/b/revature-points-system.appspot.com/o/rps%2F10.PNG?alt=media&token=bb21ffd5-a4e0-4ba7-a09c-83cba318caad" width="800">
+
+## Contributors
+* Troy Houston
+* Michael Glenn
+* Xianbin Zhen
+* Parker Hoskovec
