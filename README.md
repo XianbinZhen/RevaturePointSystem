@@ -23,6 +23,11 @@ To-do list:
 * Trainers can update/delete prizes.
 * Trainers can delete employees.
 * Prizes have availability status for redeem restrictions.
+## Usage
+### User list
+> Trainer
+> - username: Adam
+> - password: 1
 ## Getting Started
 * git clone backend https://github.com/troyhou7/RevaturePointSystemBackend.git
 * git clone frontend https://github.com/XianbinZhen/RevaturePointSystem.git
