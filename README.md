@@ -1,5 +1,10 @@
 # Revature Point System Frontend
 * Try our application here: https://revature-points-system.web.app/
+## Contributors
+* Troy Houston
+* Michael Glenn
+* Xianbin Zhen
+* Parker Hoskovec
 ## Project Description
 This is a Angular application for a Revature Point System. Associates can log in and see their Revature points and prizes.  They can compare their points to other associates on the leaderboard.  They can also redeem their points for prizes.  Trainers can login and view associates by batch, give associates revature points, and create new prizes.  Users can also update their accounts.
 ## Technologies Used
@@ -47,8 +52,4 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 <img src="https://firebasestorage.googleapis.com/v0/b/revature-points-system.appspot.com/o/rps%2F9.PNG?alt=media&token=424e08d0-b283-4349-b0c2-72f0742aa902" width="800">
 <img src="https://firebasestorage.googleapis.com/v0/b/revature-points-system.appspot.com/o/rps%2F10.PNG?alt=media&token=bb21ffd5-a4e0-4ba7-a09c-83cba318caad" width="800">
 
-## Contributors
-* Troy Houston
-* Michael Glenn
-* Xianbin Zhen
-* Parker Hoskovec
+
