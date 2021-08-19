@@ -1,5 +1,5 @@
 # Revature Point System Frontend
-* Try our application here: https://revature-points-system.web.app/
+* Try our application here: https://revature-points-system.firebaseapp.com/
 ## Contributors
 * Troy Houston
 * Michael Glenn
